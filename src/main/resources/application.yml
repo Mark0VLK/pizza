@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: pizza
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/#####
+    username: #####
+    password: #####
+
+  jpa:
+    hibernate:
+      ddl-auto: update
