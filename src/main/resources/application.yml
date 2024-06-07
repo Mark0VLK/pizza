@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: pizza
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${db_url}
+    username: ${db_username}
+    password: ${db_password}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: db/changelog/main-changelog.xml

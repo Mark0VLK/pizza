@@ -1,0 +1,37 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-8" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="orders">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="changed" type="timestamp(6)"/>
+            <column name="created" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivered" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_orders_location" references="locations(id)"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_orders_user" references="users(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

@@ -23,35 +23,35 @@ import lombok.ToString;
 @Entity
 @Setter
 @Getter
-@EqualsAndHashCode(exclude = {"order", "pizza"})
-@ToString(exclude = {"order", "pizza"})
+@EqualsAndHashCode(exclude = {"order", "dish"})
+@ToString(exclude = {"order", "dish"})
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pizza_order", uniqueConstraints = {
-        @UniqueConstraint(name = "pizza_order_pk", columnNames = {"order_id", "pizza_id"})
+@Table(name = "dishes_order", uniqueConstraints = {
+        @UniqueConstraint(name = "dishes_order_pk", columnNames = {"order_id", "dish_id"})
 })
-public class PizzaOrder {
+public class DishOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "pizza_order_order_id_fk"))
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "dish_order_order_id_fk"))
     @JsonBackReference
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "pizza_id", nullable = false, foreignKey = @ForeignKey(name = "pizza_order_pizza_id_fk"))
+    @JoinColumn(name = "dish_id", nullable = false, foreignKey = @ForeignKey(name = "dish_order_dish_id_fk"))
     @JsonManagedReference
-    private Pizza pizza;
+    private Dish dish;
 
     @Column(nullable = false, columnDefinition = "integer default 1")
     private Integer quantity = 1;
 
     @PreRemove
-    private void removePizzaAndOrder() {
-        pizza.getPizzaOrders().remove(this);
-        order.getPizzaOrders().remove(this);
+    private void removeSnackAndOrder() {
+        dish.getDishOrders().remove(this);
+        order.getDishOrders().remove(this);
     }
 }

@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-12" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users_locations"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="users_locations">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_users_locations_user_id" references="users(id)"/>
+            </column>
+            <column name="location_id" type="bigint">
+                <constraints nullable="false"
+                             foreignKeyName="fk_users_locations_location_id" references="locations(id)"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="user_id, location_id" constraintName="users_locations_pk"
+                       tableName="users_locations"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-7" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="users">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="birth_date" type="timestamp(6)"/>
+            <column name="changed" type="timestamp(6)"/>
+            <column name="created" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="is_deleted" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="surname" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="email" constraintName="idx_user_email_uniq" tableName="users"/>
+        <addUniqueConstraint columnNames="phone_number" constraintName="idx_user_phone_uniq" tableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>
