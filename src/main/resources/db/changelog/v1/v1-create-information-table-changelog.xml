@@ -1,0 +1,40 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="information"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="information">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="carb" type="double precision"/>
+            <column name="changed" type="timestamp(6)"/>
+            <column name="created" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(200)"/>
+            <column name="energy_value" type="double precision"/>
+            <column name="fat" type="double precision"/>
+            <column name="image" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="proteins" type="double precision"/>
+            <column name="category_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="category_information_id_fk" references="categories(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+

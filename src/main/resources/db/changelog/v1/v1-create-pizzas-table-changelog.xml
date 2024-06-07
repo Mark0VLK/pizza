@@ -1,0 +1,44 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-6" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pizzas"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="pizzas">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="changed" type="timestamp(6)"/>
+            <column name="created" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="diameter" type="double precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="double precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weight" type="double precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="information_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="pizza_information_id_fk" references="information(id)"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="information_id, diameter" constraintName="pizza_pk" tableName="pizzas"/>
+        <createIndex indexName="pizza_price_index" tableName="pizzas">
+            <column name="price"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

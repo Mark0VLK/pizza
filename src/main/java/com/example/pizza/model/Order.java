@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,6 +22,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 import java.util.Collections;
@@ -28,11 +33,12 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-@EqualsAndHashCode(exclude = {"user", "location", "pizzaOrders", "dishesOrders", "drinkOrders"})
-@ToString(exclude = {"user", "location", "pizzaOrders", "dishesOrders", "drinkOrders"})
+@EqualsAndHashCode(exclude = {"user", "location", "pizzaOrders", "dishOrders", "drinkOrders"})
+@ToString(exclude = {"user", "location", "pizzaOrders", "dishOrders", "drinkOrders"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
+@EntityListeners(AuditingEntityListener.class)
 public class Order {
 
     @Id
@@ -43,19 +49,21 @@ public class Order {
     private Boolean delivered = false;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_orders_user"))
     @JsonBackReference
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", nullable = false)
+    @JoinColumn(name = "location_id", nullable = false, foreignKey = @ForeignKey(name = "fk_orders_location"))
     @JsonBackReference
     private Location location;
 
-    @Column(nullable = false)
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
     private Timestamp created;
 
-    @Column(nullable = false)
+    @LastModifiedDate
+    @Column(insertable = false)
     private Timestamp changed;
 
     @Column(name = "is_deleted", nullable = false, columnDefinition = "boolean default false")
@@ -67,7 +75,7 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
-    private Set<DishesOrder> dishesOrders = Collections.emptySet();
+    private Set<DishOrder> dishOrders = Collections.emptySet();
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference

@@ -23,35 +23,35 @@ import lombok.ToString;
 @Entity
 @Setter
 @Getter
-@EqualsAndHashCode(exclude = {"order", "dishes"})
-@ToString(exclude = {"order", "dishes"})
+@EqualsAndHashCode(exclude = {"order", "dish"})
+@ToString(exclude = {"order", "dish"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "dishes_order", uniqueConstraints = {
-        @UniqueConstraint(name = "dishes_order_pk", columnNames = {"order_id", "dishes_id"})
+        @UniqueConstraint(name = "dishes_order_pk", columnNames = {"order_id", "dish_id"})
 })
-public class DishesOrder {
+public class DishOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "dishes_order_order_id_fk"))
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "dish_order_order_id_fk"))
     @JsonBackReference
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "dishes_id", nullable = false, foreignKey = @ForeignKey(name = "dishes_order_dishes_id_fk"))
+    @JoinColumn(name = "dish_id", nullable = false, foreignKey = @ForeignKey(name = "dish_order_dish_id_fk"))
     @JsonManagedReference
-    private Dishes dishes;
+    private Dish dish;
 
     @Column(nullable = false, columnDefinition = "integer default 1")
     private Integer quantity = 1;
 
     @PreRemove
     private void removeSnackAndOrder() {
-        dishes.getDishesOrders().remove(this);
-        order.getDishesOrders().remove(this);
+        dish.getDishOrders().remove(this);
+        order.getDishOrders().remove(this);
     }
 }

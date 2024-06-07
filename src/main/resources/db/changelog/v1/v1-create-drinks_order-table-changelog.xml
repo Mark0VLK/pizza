@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-10" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="drinks_order"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="drinks_order">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="quantity" type="integer" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="drink_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="drinks_order_drinks_id_fk" references="drinks(id)"/>
+            </column>
+            <column name="order_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="drinks_order_order_id_fk" references="orders(id)"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="order_id, drink_id" constraintName="drinks_order_pk"
+                             tableName="drinks_order"/>
+    </changeSet>
+
+</databaseChangeLog>

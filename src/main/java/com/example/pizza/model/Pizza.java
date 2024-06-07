@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 import java.util.Collections;
@@ -40,6 +44,7 @@ import java.util.Set;
 }, indexes = {
         @Index(name = "pizza_price_index", columnList = "price")
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Pizza {
 
     @Id
@@ -60,10 +65,12 @@ public class Pizza {
     @JsonManagedReference
     private Information information;
 
-    @Column(nullable = false)
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
     private Timestamp created;
 
-    @Column(nullable = false)
+    @LastModifiedDate
+    @Column(insertable = false)
     private Timestamp changed;
 
     @Column(name = "is_deleted", nullable = false, columnDefinition = "boolean default false")
