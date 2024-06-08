@@ -8,6 +8,7 @@ import java.util.List;
 public interface PizzaService {
 
     Pizza getPizzaById(Long id);
+
     List<Pizza> getAllPizzas();
 
 }

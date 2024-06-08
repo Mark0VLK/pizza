@@ -8,6 +8,7 @@ import java.util.List;
 public interface DrinkOrderService {
 
     DrinkOrder getDrinkOrderById(Long id);
+
     List<DrinkOrder> getAllDrinkOrders();
 
 }

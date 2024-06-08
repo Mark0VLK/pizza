@@ -11,11 +11,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(Long id) {
+
         return null;
     }
 
     @Override
     public List<Category> getAllCategories() {
+
         return null;
     }
 }

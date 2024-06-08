@@ -8,6 +8,7 @@ import java.util.List;
 public interface LocationService {
 
     Location getLocationById(Long id);
+
     List<Location> getAllLocations();
 
 }
