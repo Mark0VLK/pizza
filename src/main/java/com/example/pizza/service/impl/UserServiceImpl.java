@@ -1,12 +1,13 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.user.UserCreateRequest;
+import com.example.pizza.request.UserCreateRequest;
 import com.example.pizza.response.UserResponse;
 import com.example.pizza.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse deleteById(Long id,DeleteMode deleteMode) {
+    public UserResponse deleteById(Long id, DeleteMode deleteMode) {
 
         return null;
     }

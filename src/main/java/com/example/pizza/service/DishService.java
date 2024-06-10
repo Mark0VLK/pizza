@@ -1,7 +1,7 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.dish.DishCreateRequest;
+import com.example.pizza.request.DishCreateRequest;
 import com.example.pizza.response.DishResponse;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface DishService {
     /**
      * Deletes a dish by its ID.
      *
-     * @param id      the ID of the dish to delete
+     * @param id         the ID of the dish to delete
      * @param deleteMode the mode indicating whether to delete the dish permanently or softly
      * @return the deleted DishResponse object containing dish information if successfully deleted
      */
@@ -28,7 +28,8 @@ public interface DishService {
 
     /**
      * Updates information about a dish.
-     * @param id the ID of the dish to update
+     *
+     * @param id                the ID of the dish to update
      * @param dishCreateRequest the DishCreateRequest object containing information to update the dish
      * @return the updated DishResponse object containing information about dish
      */

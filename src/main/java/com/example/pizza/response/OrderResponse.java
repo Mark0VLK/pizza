@@ -1,4 +1,11 @@
 package com.example.pizza.response;
 
-public class OrderResponse {
+public record OrderResponse(
+
+        Long userId,
+
+        Long locationId,
+
+        Boolean delivered
+) {
 }

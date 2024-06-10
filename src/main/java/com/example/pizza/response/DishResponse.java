@@ -1,4 +1,13 @@
 package com.example.pizza.response;
 
-public class DishResponse {
+public record DishResponse(
+
+        Integer numberOfPieces,
+
+        Double weight,
+
+        Double price,
+
+        Long informationId
+) {
 }

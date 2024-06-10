@@ -1,6 +1,6 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.request.information.InformationCreateRequest;
+import com.example.pizza.request.InformationCreateRequest;
 import com.example.pizza.response.InformationResponse;
 import com.example.pizza.service.InformationService;
 import org.springframework.stereotype.Service;

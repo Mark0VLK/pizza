@@ -1,4 +1,11 @@
 package com.example.pizza.response;
 
-public class DrinkResponse {
+public record DrinkResponse(
+
+        Double volume,
+
+        Double price,
+
+        Long informationId
+) {
 }

@@ -1,7 +1,7 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.user.UserCreateRequest;
+import com.example.pizza.request.UserCreateRequest;
 import com.example.pizza.response.UserResponse;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface UserService {
     /**
      * This method allows for both permanent and soft deletion of users based on the forever flag.
      *
-     * @param id      a unique user ID.
+     * @param id         a unique user ID.
      * @param deleteMode the mode indicating whether to delete the user permanently or softly
      * @return the deleted UserResponse object.
      */
@@ -38,7 +38,8 @@ public interface UserService {
 
     /**
      * This method updates information about an existing user in the system.
-     * @param id the ID of user to update
+     *
+     * @param id                the ID of user to update
      * @param userCreateRequest the UserCreateRequest object containing information for updating the user.
      * @return the updated UserResponse object.
      */

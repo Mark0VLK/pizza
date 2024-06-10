@@ -1,7 +1,7 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.drink.DrinkCreateRequest;
+import com.example.pizza.request.DrinkCreateRequest;
 import com.example.pizza.response.DrinkResponse;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface DrinkService {
     /**
      * Deletes a drink by its ID.
      *
-     * @param id      the ID of the drink to delete
+     * @param id         the ID of the drink to delete
      * @param deleteMode the mode indicating whether to delete the drink permanently or softly
      * @return the deleted DrinkResponse object containing drink if successfully deleted
      */
@@ -28,7 +28,8 @@ public interface DrinkService {
 
     /**
      * Updates information about a drink.
-     * @param id the ID of the drink to update
+     *
+     * @param id                 the ID of the drink to update
      * @param drinkCreateRequest the DrinkCreateRequest object containing information about drink to update
      * @return the updated DrinkResponse
      */

@@ -1,6 +1,6 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.request.location.LocationCreateRequest;
+import com.example.pizza.request.LocationCreateRequest;
 import com.example.pizza.response.LocationResponse;
 import com.example.pizza.service.LocationService;
 import org.springframework.stereotype.Service;

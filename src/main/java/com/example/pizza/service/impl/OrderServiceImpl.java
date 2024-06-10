@@ -1,6 +1,6 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.request.order.OrderCreateRequest;
+import com.example.pizza.request.OrderCreateRequest;
 import com.example.pizza.response.OrderResponse;
 import com.example.pizza.service.OrderService;
 import org.springframework.stereotype.Service;

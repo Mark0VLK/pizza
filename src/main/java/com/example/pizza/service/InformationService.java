@@ -1,6 +1,6 @@
 package com.example.pizza.service;
 
-import com.example.pizza.request.information.InformationCreateRequest;
+import com.example.pizza.request.InformationCreateRequest;
 import com.example.pizza.response.InformationResponse;
 
 import java.util.List;
@@ -26,7 +26,8 @@ public interface InformationService {
 
     /**
      * Updates an existing information entity based on the provided update request data.
-     * @param id the ID of the information entity to delete.
+     *
+     * @param id                       the ID of the information entity to delete.
      * @param informationCreateRequest the InformationCreateRequest containing data for updating entity.
      * @return the updated InformationResponse object
      */

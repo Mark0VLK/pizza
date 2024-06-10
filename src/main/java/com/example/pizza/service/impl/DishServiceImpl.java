@@ -1,7 +1,7 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.dish.DishCreateRequest;
+import com.example.pizza.request.DishCreateRequest;
 import com.example.pizza.response.DishResponse;
 import com.example.pizza.service.DishService;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.category.CategoryCreateRequest;
+import com.example.pizza.request.CategoryCreateRequest;
 import com.example.pizza.response.CategoryResponse;
 import com.example.pizza.service.CategoryService;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponse update(Long Id,CategoryCreateRequest categoryCreateRequest) {
+    public CategoryResponse update(Long Id, CategoryCreateRequest categoryCreateRequest) {
 
         return null;
     }

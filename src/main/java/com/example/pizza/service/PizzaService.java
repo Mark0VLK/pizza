@@ -1,7 +1,7 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.pizza.PizzaCreateRequest;
+import com.example.pizza.request.PizzaCreateRequest;
 import com.example.pizza.response.PizzaResponse;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface PizzaService {
     /**
      * This method allows for both permanent and soft deletion of pizza based on the forever flag.
      *
-     * @param id      the ID of the pizza to delete
+     * @param id         the ID of the pizza to delete
      * @param deleteMode the mode indicating whether to delete the pizza permanently or softly
      * @return the deleted PizzaResponse if successfully deleted
      */
@@ -28,7 +28,8 @@ public interface PizzaService {
 
     /**
      * Updates an existing pizza based on the provided data.
-     * @param id the ID of the pizza to update
+     *
+     * @param id                 the ID of the pizza to update
      * @param pizzaCreateRequest the PizzaCreateRequest object containing data for updating the pizza
      * @return the updated PizzaResponse object
      */

@@ -1,4 +1,7 @@
 package com.example.pizza.response;
 
-public class CategoryResponse {
+public record CategoryResponse(
+
+        String name
+) {
 }
