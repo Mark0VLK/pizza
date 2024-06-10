@@ -24,7 +24,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish getDishesById(Long id) {
+    public Dish getDishById(Long id) {
 
         return null;
     }
