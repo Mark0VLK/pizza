@@ -1,8 +1,8 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Pizza;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.pizza.PizzaCreateRequest;
-import com.example.pizza.request.pizza.PizzaUpdateRequest;
+import com.example.pizza.response.PizzaResponse;
 
 import java.util.List;
 
@@ -13,40 +13,40 @@ public interface PizzaService {
      * This method allows for both permanent and soft deletion of pizza based on the forever flag.
      *
      * @param id      the ID of the pizza to delete
-     * @param forever a flag indicating how to delete a pizza (hard or soft)
-     * @return the deleted pizza if successfully deleted
+     * @param deleteMode the mode indicating whether to delete the pizza permanently or softly
+     * @return the deleted PizzaResponse if successfully deleted
      */
-    Pizza deleteById(Long id, boolean forever);
+    PizzaResponse deleteById(Long id, DeleteMode deleteMode);
 
     /**
      * Creates a new pizza based on the provided data.
      *
-     * @param pizzaCreateRequest the data for creating the pizza
-     * @return the created pizza
+     * @param pizzaCreateRequest the PizzaCreateRequest object containing data for creating the pizza
+     * @return the created PizzaResponse object
      */
-    Pizza create(PizzaCreateRequest pizzaCreateRequest);
+    PizzaResponse create(PizzaCreateRequest pizzaCreateRequest);
 
     /**
      * Updates an existing pizza based on the provided data.
-     *
-     * @param pizzaUpdateRequest the data for updating the pizza
-     * @return the updated pizza
+     * @param id the ID of the pizza to update
+     * @param pizzaCreateRequest the PizzaCreateRequest object containing data for updating the pizza
+     * @return the updated PizzaResponse object
      */
-    Pizza update(PizzaUpdateRequest pizzaUpdateRequest);
+    PizzaResponse update(Long id, PizzaCreateRequest pizzaCreateRequest);
 
     /**
      * Finds a pizza by the given ID.
      *
      * @param id the ID of the pizza
-     * @return the pizza with the given ID, or null if not found
+     * @return the PizzaResponse object with the given ID
      */
-    Pizza getPizzaById(Long id);
+    PizzaResponse getPizzaById(Long id);
 
     /**
      * Returns a list of all pizzas.
      *
-     * @return a list of all pizzas
+     * @return a list of all PizzaResponse objects
      */
-    List<Pizza> getAllPizzas();
+    List<PizzaResponse> getAllPizzas();
 
 }

@@ -1,8 +1,7 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.Order;
 import com.example.pizza.request.order.OrderCreateRequest;
-import com.example.pizza.request.order.OrderUpdateRequest;
+import com.example.pizza.response.OrderResponse;
 import com.example.pizza.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +11,31 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public Order deleteById(Long id) {
+    public OrderResponse deleteById(Long id) {
 
         return null;
     }
 
     @Override
-    public Order create(OrderCreateRequest orderCreateRequest) {
+    public OrderResponse create(OrderCreateRequest orderCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Order update(OrderUpdateRequest orderUpdateRequest) {
+    public OrderResponse update(Long id, OrderCreateRequest orderCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Order getOrderById(Long id) {
+    public OrderResponse getOrderById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<Order> getAllOrders() {
+    public List<OrderResponse> getAllOrders() {
 
         return null;
     }

@@ -1,8 +1,7 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.Location;
 import com.example.pizza.request.location.LocationCreateRequest;
-import com.example.pizza.request.location.LocationUpdateRequest;
+import com.example.pizza.response.LocationResponse;
 import com.example.pizza.service.LocationService;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +11,31 @@ import java.util.List;
 public class LocationServiceImpl implements LocationService {
 
     @Override
-    public Location deleteById(Long id) {
+    public LocationResponse deleteById(Long id) {
 
         return null;
     }
 
     @Override
-    public Location create(LocationCreateRequest locationCreateRequest) {
+    public LocationResponse create(LocationCreateRequest locationCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Location update(LocationUpdateRequest locationUpdateRequest) {
+    public LocationResponse update(Long id, LocationCreateRequest locationCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Location getLocationById(Long id) {
+    public LocationResponse getLocationById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<Location> getAllLocations() {
+    public List<LocationResponse> getAllLocations() {
 
         return null;
     }

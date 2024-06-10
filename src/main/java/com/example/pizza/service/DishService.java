@@ -1,8 +1,8 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Dish;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.dish.DishCreateRequest;
-import com.example.pizza.request.dish.DishUpdateRequest;
+import com.example.pizza.response.DishResponse;
 
 import java.util.List;
 
@@ -13,40 +13,40 @@ public interface DishService {
      * Deletes a dish by its ID.
      *
      * @param id      the ID of the dish to delete
-     * @param forever a boolean indicating whether to delete the dish permanently
-     * @return the deleted dish if successfully deleted
+     * @param deleteMode the mode indicating whether to delete the dish permanently or softly
+     * @return the deleted DishResponse object containing dish information if successfully deleted
      */
-    Dish deleteById(Long id, boolean forever);
+    DishResponse deleteById(Long id, DeleteMode deleteMode);
 
     /**
      * Creates a new dish.
      *
-     * @param dishCreateRequest information about the dish to create
-     * @return the created dish
+     * @param dishCreateRequest the DishCreateRequest object containing information about the dish to create
+     * @return the created DishResponse object
      */
-    Dish create(DishCreateRequest dishCreateRequest);
+    DishResponse create(DishCreateRequest dishCreateRequest);
 
     /**
      * Updates information about a dish.
-     *
-     * @param dishUpdateRequest information to update the dish
-     * @return the updated dish
+     * @param id the ID of the dish to update
+     * @param dishCreateRequest the DishCreateRequest object containing information to update the dish
+     * @return the updated DishResponse object containing information about dish
      */
-    Dish update(DishUpdateRequest dishUpdateRequest);
+    DishResponse update(Long id, DishCreateRequest dishCreateRequest);
 
     /**
      * Retrieves information about a dish by its ID.
      *
      * @param id the ID of the dish
-     * @return the dish with the specified ID
+     * @return the DishResponse containing information about the dish with the specified ID
      */
-    Dish getDishById(Long id);
+    DishResponse getDishById(Long id);
 
     /**
      * Retrieves a list of all dishes.
      *
-     * @return a list of all dishes
+     * @return a list of all DishRequest objects
      */
-    List<Dish> getAllDishes();
+    List<DishResponse> getAllDishes();
 
 }

@@ -1,8 +1,7 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Order;
 import com.example.pizza.request.order.OrderCreateRequest;
-import com.example.pizza.request.order.OrderUpdateRequest;
+import com.example.pizza.response.OrderResponse;
 
 import java.util.List;
 
@@ -13,39 +12,39 @@ public interface OrderService {
      * Deletes an order by its ID.
      *
      * @param id the ID of the order to delete
-     * @return the deleted order
+     * @return the deleted OrderResponse object if successfully deleted
      */
-    Order deleteById(Long id);
+    OrderResponse deleteById(Long id);
 
     /**
      * Creates a new order based on the provided request data.
      *
-     * @param orderCreateRequest the request containing the data for the new order
-     * @return the newly created order
+     * @param orderCreateRequest the OrderCreateRequest object containing the data for the new order
+     * @return the created OrderResponse object
      */
-    Order create(OrderCreateRequest orderCreateRequest);
+    OrderResponse create(OrderCreateRequest orderCreateRequest);
 
     /**
      * Updates an existing order with the data provided in the request.
-     *
-     * @param orderUpdateRequest the request containing the updated data for the order
-     * @return the updated order
+     * @param id the ID of the order to update
+     * @param orderCreateRequest the OrderCreateRequest object containing the data for the order to update
+     * @return the updated OrderResponse object
      */
-    Order update(OrderUpdateRequest orderUpdateRequest);
+    OrderResponse update(Long id, OrderCreateRequest orderCreateRequest);
 
     /**
      * Retrieves an order by its ID.
      *
      * @param id the ID of the order to retrieve
-     * @return the order with the specified ID
+     * @return the OrderResponse with the specified ID
      */
-    Order getOrderById(Long id);
+    OrderResponse getOrderById(Long id);
 
     /**
      * Retrieves all orders.
      *
-     * @return a list of all orders
+     * @return a list of all OrderResponse objects
      */
-    List<Order> getAllOrders();
+    List<OrderResponse> getAllOrders();
 
 }

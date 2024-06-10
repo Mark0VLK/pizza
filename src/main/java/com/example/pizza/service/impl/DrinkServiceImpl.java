@@ -1,8 +1,8 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.Drink;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.drink.DrinkCreateRequest;
-import com.example.pizza.request.drink.DrinkUpdateRequest;
+import com.example.pizza.response.DrinkResponse;
 import com.example.pizza.service.DrinkService;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +12,31 @@ import java.util.List;
 public class DrinkServiceImpl implements DrinkService {
 
     @Override
-    public Drink deleteById(Long id, boolean forever) {
+    public DrinkResponse deleteById(Long id, DeleteMode deleteMode) {
 
         return null;
     }
 
     @Override
-    public Drink create(DrinkCreateRequest drinkCreateRequest) {
+    public DrinkResponse create(DrinkCreateRequest drinkCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Drink update(DrinkUpdateRequest drinkUpdateRequest) {
+    public DrinkResponse update(Long id, DrinkCreateRequest drinkCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Drink getDrinkById(Long id) {
+    public DrinkResponse getDrinkById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<Drink> getAllDrinks() {
+    public List<DrinkResponse> getAllDrinks() {
 
         return null;
     }

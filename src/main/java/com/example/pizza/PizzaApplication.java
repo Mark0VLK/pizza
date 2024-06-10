@@ -9,9 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class PizzaApplication {
 
 	public static void main(String[] args) {
-//		System.setProperty("db_url", "jdbc:postgresql://localhost:5432/postgres");
-//		System.setProperty("db_username", "postgres");
-//		System.setProperty("db_password", "postgres");
+
 		SpringApplication.run(PizzaApplication.class, args);
 	}
 

@@ -1,8 +1,7 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Location;
 import com.example.pizza.request.location.LocationCreateRequest;
-import com.example.pizza.request.location.LocationUpdateRequest;
+import com.example.pizza.response.LocationResponse;
 
 import java.util.List;
 
@@ -13,39 +12,41 @@ public interface LocationService {
      * This method deletes a location by ID
      *
      * @param id a unique location ID.
-     * @return a deleted location object.
+     * @return the deleted LocationResponse object containing information entity if successfully deleted
      */
-    Location deleteById(Long id);
+    LocationResponse deleteById(Long id);
 
     /**
      * This method creates a new location in the system.
      *
-     * @param locationCreateRequest an object containing information about the location being created.
-     * @return the created Location object.
+     * @param locationCreateRequest the LocationCreateRequest object containing information about the location
+     *                              to create.
+     * @return the created LocationResponse object.
      */
-    Location create(LocationCreateRequest locationCreateRequest);
+    LocationResponse create(LocationCreateRequest locationCreateRequest);
 
     /**
      * This method updates information about an existing location in the system.
-     *
-     * @param locationUpdateRequest an object containing information for updating the location.
-     * @return the updated Location object
+     * @param id the ID of location to update.
+     * @param locationCreateRequest the LocationCreateRequest object containing information about
+     *                              the location to update.
+     * @return the updated LocationResponse object
      */
-    Location update(LocationUpdateRequest locationUpdateRequest);
+    LocationResponse update(Long id, LocationCreateRequest locationCreateRequest);
 
     /**
      * This method returns the location by its ID.
      *
      * @param id a unique location ID.
-     * @return the Location object
+     * @return the LocationResponse object
      */
-    Location getLocationById(Long id);
+    LocationResponse getLocationById(Long id);
 
     /**
      * This method returns a list of all locations in the system.
      *
-     * @return list of locations
+     * @return list of LocationResponse objects
      */
-    List<Location> getAllLocations();
+    List<LocationResponse> getAllLocations();
 
 }

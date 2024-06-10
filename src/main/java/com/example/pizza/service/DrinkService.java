@@ -1,8 +1,8 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Drink;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.drink.DrinkCreateRequest;
-import com.example.pizza.request.drink.DrinkUpdateRequest;
+import com.example.pizza.response.DrinkResponse;
 
 import java.util.List;
 
@@ -13,40 +13,40 @@ public interface DrinkService {
      * Deletes a drink by its ID.
      *
      * @param id      the ID of the drink to delete
-     * @param forever a boolean indicating whether to delete the drink permanently
-     * @return the deleted drink if successfully deleted
+     * @param deleteMode the mode indicating whether to delete the drink permanently or softly
+     * @return the deleted DrinkResponse object containing drink if successfully deleted
      */
-    Drink deleteById(Long id, boolean forever);
+    DrinkResponse deleteById(Long id, DeleteMode deleteMode);
 
     /**
      * Creates a new drink based on the provided data.
      *
-     * @param drinkCreateRequest the data for creating the drink
-     * @return the newly created drink
+     * @param drinkCreateRequest the DrinkCreateRequest object containing information about drink to create
+     * @return the created DrinkResponse object
      */
-    Drink create(DrinkCreateRequest drinkCreateRequest);
+    DrinkResponse create(DrinkCreateRequest drinkCreateRequest);
 
     /**
-     * Updates an existing drink with the provided data.
-     *
-     * @param drinkUpdateRequest the data for updating the drink
-     * @return the updated drink
+     * Updates information about a drink.
+     * @param id the ID of the drink to update
+     * @param drinkCreateRequest the DrinkCreateRequest object containing information about drink to update
+     * @return the updated DrinkResponse
      */
-    Drink update(DrinkUpdateRequest drinkUpdateRequest);
+    DrinkResponse update(Long id, DrinkCreateRequest drinkCreateRequest);
 
     /**
      * Finds a drink by its ID.
      *
      * @param id the ID of the drink to find
-     * @return the drink with the given ID, or null if not found
+     * @return the DrinkResponse object containing information about drink with the given ID
      */
-    Drink getDrinkById(Long id);
+    DrinkResponse getDrinkById(Long id);
 
     /**
      * Retrieves a list of all drinks.
      *
-     * @return a list of all drinks
+     * @return a list of all DrinkResponse object
      */
-    List<Drink> getAllDrinks();
+    List<DrinkResponse> getAllDrinks();
 
 }

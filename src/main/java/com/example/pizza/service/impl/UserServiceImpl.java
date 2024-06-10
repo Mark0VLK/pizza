@@ -1,8 +1,8 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.User;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.user.UserCreateRequest;
-import com.example.pizza.request.user.UserUpdateRequest;
+import com.example.pizza.response.UserResponse;
 import com.example.pizza.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -11,37 +11,37 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public User addUserLocation(Long userId, Long locationId) {
+    public UserResponse addUserLocation(Long userId, Long locationId) {
 
         return null;
     }
 
     @Override
-    public User deleteById(Long id, boolean forever) {
+    public UserResponse deleteById(Long id,DeleteMode deleteMode) {
 
         return null;
     }
 
     @Override
-    public User create(UserCreateRequest userCreateRequest) {
+    public UserResponse create(UserCreateRequest userCreateRequest) {
 
         return null;
     }
 
     @Override
-    public User update(UserUpdateRequest userUpdateRequest) {
+    public UserResponse update(Long id, UserCreateRequest userCreateRequest) {
 
         return null;
     }
 
     @Override
-    public User getUserById(Long id) {
+    public UserResponse getUserById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
 
         return null;
     }

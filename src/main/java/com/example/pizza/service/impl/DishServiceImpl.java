@@ -1,8 +1,8 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.Dish;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.dish.DishCreateRequest;
-import com.example.pizza.request.dish.DishUpdateRequest;
+import com.example.pizza.response.DishResponse;
 import com.example.pizza.service.DishService;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +12,31 @@ import java.util.List;
 public class DishServiceImpl implements DishService {
 
     @Override
-    public Dish deleteById(Long id, boolean forever) {
+    public DishResponse deleteById(Long id, DeleteMode deleteMode) {
 
         return null;
     }
 
     @Override
-    public Dish create(DishCreateRequest dishCreateRequest) {
+    public DishResponse create(DishCreateRequest dishCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Dish update(DishUpdateRequest dishUpdateRequest) {
+    public DishResponse update(Long id, DishCreateRequest dishCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Dish getDishById(Long id) {
+    public DishResponse getDishById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<Dish> getAllDishes() {
+    public List<DishResponse> getAllDishes() {
 
         return null;
     }

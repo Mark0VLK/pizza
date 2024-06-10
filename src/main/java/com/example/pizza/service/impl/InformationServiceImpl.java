@@ -1,8 +1,7 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.model.Information;
 import com.example.pizza.request.information.InformationCreateRequest;
-import com.example.pizza.request.information.InformationUpdateRequest;
+import com.example.pizza.response.InformationResponse;
 import com.example.pizza.service.InformationService;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +11,31 @@ import java.util.List;
 public class InformationServiceImpl implements InformationService {
 
     @Override
-    public Information deleteById(Long id) {
+    public InformationResponse deleteById(Long id) {
 
         return null;
     }
 
     @Override
-    public Information create(InformationCreateRequest informationCreateRequest) {
+    public InformationResponse create(InformationCreateRequest informationCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Information update(InformationUpdateRequest informationUpdateRequest) {
+    public InformationResponse update(Long id, InformationCreateRequest informationCreateRequest) {
 
         return null;
     }
 
     @Override
-    public Information getInformationById(Long id) {
+    public InformationResponse getInformationById(Long id) {
 
         return null;
     }
 
     @Override
-    public List<Information> getAllInformation() {
+    public List<InformationResponse> getAllInformation() {
 
         return null;
     }

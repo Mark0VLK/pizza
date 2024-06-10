@@ -1,8 +1,8 @@
 package com.example.pizza.service;
 
-import com.example.pizza.model.Category;
+import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.category.CategoryCreateRequest;
-import com.example.pizza.request.category.CategoryUpdateRequest;
+import com.example.pizza.response.CategoryResponse;
 
 import java.util.List;
 
@@ -12,41 +12,41 @@ public interface CategoryService {
     /**
      * Deletes a category by its ID.
      *
-     * @param id      the ID of the category to delete
-     * @param forever a boolean indicating whether to delete the category permanently
-     * @return the deleted category if successfully deleted
+     * @param id         the ID of the category to delete
+     * @param deleteMode the mode indicating whether to delete the category permanently or softly
+     * @return the deleted CategoryResponse if successfully deleted
      */
-    Category deleteById(Long id, boolean forever);
+    CategoryResponse deleteById(Long id, DeleteMode deleteMode);
 
     /**
      * Creates a new category.
      *
-     * @param categoryCreateRequest information about the category to create
-     * @return the created category
+     * @param categoryCreateRequest the CategoryCreateRequest object containing category information
+     * @return the created CategoryResponse object
      */
-    Category create(CategoryCreateRequest categoryCreateRequest);
+    CategoryResponse create(CategoryCreateRequest categoryCreateRequest);
 
     /**
      * Updates information about a category.
-     *
-     * @param categoryUpdateRequest information to update the category
-     * @return the updated category
+     * @param id the ID of the category to update
+     * @param categoryCreateRequest the CategoryCreateRequest object containing category information
+     * @return the updated CategoryResponse object
      */
-    Category update(CategoryUpdateRequest categoryUpdateRequest);
+    CategoryResponse update(Long id,CategoryCreateRequest categoryCreateRequest);
 
     /**
      * Retrieves information about a category by its ID.
      *
      * @param id the ID of the category
-     * @return the category with the specified ID
+     * @return the CategoryResponse object containing category information with the specified ID
      */
-    Category getCategoryById(Long id);
+    CategoryResponse getCategoryById(Long id);
 
     /**
      * Retrieves a list of all categories.
      *
-     * @return a list of all categories
+     * @return a list of all CategoryResponse objects
      */
-    List<Category> getAllCategories();
+    List<CategoryResponse> getAllCategories();
 
 }
