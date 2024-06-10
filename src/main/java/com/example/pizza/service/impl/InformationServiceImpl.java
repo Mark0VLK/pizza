@@ -1,6 +1,7 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.request.InformationCreateRequest;
+import com.example.pizza.request.information.InformationCreateRequest;
+import com.example.pizza.request.information.InformationUpdateRequest;
 import com.example.pizza.response.InformationResponse;
 import com.example.pizza.service.InformationService;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public InformationResponse update(Long id, InformationCreateRequest informationCreateRequest) {
+    public InformationResponse update(Long id, InformationUpdateRequest informationUpdateRequest) {
 
         return null;
     }

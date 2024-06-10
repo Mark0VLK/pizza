@@ -1,7 +1,8 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.PizzaCreateRequest;
+import com.example.pizza.request.pizza.PizzaCreateRequest;
+import com.example.pizza.request.pizza.PizzaUpdateRequest;
 import com.example.pizza.response.PizzaResponse;
 
 import java.util.List;
@@ -30,10 +31,10 @@ public interface PizzaService {
      * Updates an existing pizza based on the provided data.
      *
      * @param id                 the ID of the pizza to update
-     * @param pizzaCreateRequest the PizzaCreateRequest object containing data for updating the pizza
+     * @param pizzaUpdateRequest the request object containing updated pizza data
      * @return the updated PizzaResponse object
      */
-    PizzaResponse update(Long id, PizzaCreateRequest pizzaCreateRequest);
+    PizzaResponse update(Long id, PizzaUpdateRequest pizzaUpdateRequest);
 
     /**
      * Finds a pizza by the given ID.

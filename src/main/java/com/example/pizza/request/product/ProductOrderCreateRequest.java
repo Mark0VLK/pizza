@@ -1,4 +1,4 @@
-package com.example.pizza.request;
+package com.example.pizza.request.product;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

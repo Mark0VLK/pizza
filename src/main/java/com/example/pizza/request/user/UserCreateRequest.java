@@ -1,4 +1,4 @@
-package com.example.pizza.request;
+package com.example.pizza.request.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

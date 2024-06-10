@@ -1,11 +1,11 @@
-package com.example.pizza.request;
+package com.example.pizza.request.pizza;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public record PizzaCreateRequest(
+public record PizzaUpdateRequest(
 
         @NotNull(message = "{pizza.diameter.mandatory}")
         @Positive(message = "{pizza.diameter.positive}")

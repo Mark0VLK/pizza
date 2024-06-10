@@ -1,7 +1,8 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.CategoryCreateRequest;
+import com.example.pizza.request.category.CategoryCreateRequest;
+import com.example.pizza.request.category.CategoryUpdateRequest;
 import com.example.pizza.response.CategoryResponse;
 
 import java.util.List;
@@ -30,10 +31,10 @@ public interface CategoryService {
      * Updates information about a category.
      *
      * @param id                    the ID of the category to update
-     * @param categoryCreateRequest the CategoryCreateRequest object containing category information
+     * @param categoryUpdateRequest the request object containing updated category information
      * @return the updated CategoryResponse object
      */
-    CategoryResponse update(Long id, CategoryCreateRequest categoryCreateRequest);
+    CategoryResponse update(Long id, CategoryUpdateRequest categoryUpdateRequest);
 
     /**
      * Retrieves information about a category by its ID.

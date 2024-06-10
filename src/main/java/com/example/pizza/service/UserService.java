@@ -1,7 +1,8 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.UserCreateRequest;
+import com.example.pizza.request.user.UserCreateRequest;
+import com.example.pizza.request.user.UserUpdateRequest;
 import com.example.pizza.response.UserResponse;
 
 import java.util.List;
@@ -40,10 +41,10 @@ public interface UserService {
      * This method updates information about an existing user in the system.
      *
      * @param id                the ID of user to update
-     * @param userCreateRequest the UserCreateRequest object containing information for updating the user.
+     * @param userUpdateRequest the request object containing updated user data
      * @return the updated UserResponse object.
      */
-    UserResponse update(Long id, UserCreateRequest userCreateRequest);
+    UserResponse update(Long id, UserUpdateRequest userUpdateRequest);
 
     /**
      * This method returns the user by his ID.

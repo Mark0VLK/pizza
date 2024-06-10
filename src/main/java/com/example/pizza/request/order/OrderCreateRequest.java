@@ -1,4 +1,4 @@
-package com.example.pizza.request;
+package com.example.pizza.request.order;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;

@@ -1,4 +1,4 @@
-package com.example.pizza.request;
+package com.example.pizza.request.dish;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public record DishCreateRequest(
+public record DishUpdateRequest(
 
         @NotNull(message = "{dish.numberOfPieces.mandatory}")
         @Min(value = 1, message = "{dish.numberOfPieces.min}")
@@ -22,5 +22,5 @@ public record DishCreateRequest(
 
         @NotNull(message = "{dish.informationId.mandatory}")
         Long informationId
-) {}
-
+) {
+}

@@ -1,6 +1,7 @@
 package com.example.pizza.service;
 
-import com.example.pizza.request.OrderCreateRequest;
+import com.example.pizza.request.order.OrderCreateRequest;
+import com.example.pizza.request.order.OrderUpdateRequest;
 import com.example.pizza.response.OrderResponse;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public interface OrderService {
      * Updates an existing order with the data provided in the request.
      *
      * @param id                 the ID of the order to update
-     * @param orderCreateRequest the OrderCreateRequest object containing the data for the order to update
+     * @param orderUpdateRequest the request object containing updated order data
      * @return the updated OrderResponse object
      */
-    OrderResponse update(Long id, OrderCreateRequest orderCreateRequest);
+    OrderResponse update(Long id, OrderUpdateRequest orderUpdateRequest);
 
     /**
      * Retrieves an order by its ID.

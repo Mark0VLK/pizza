@@ -1,6 +1,7 @@
 package com.example.pizza.service;
 
-import com.example.pizza.request.LocationCreateRequest;
+import com.example.pizza.request.location.LocationCreateRequest;
+import com.example.pizza.request.location.LocationUpdateRequest;
 import com.example.pizza.response.LocationResponse;
 
 import java.util.List;
@@ -29,11 +30,10 @@ public interface LocationService {
      * This method updates information about an existing location in the system.
      *
      * @param id                    the ID of location to update.
-     * @param locationCreateRequest the LocationCreateRequest object containing information about
-     *                              the location to update.
+     * @param locationUpdateRequest the request object containing updated location information
      * @return the updated LocationResponse object
      */
-    LocationResponse update(Long id, LocationCreateRequest locationCreateRequest);
+    LocationResponse update(Long id, LocationUpdateRequest locationUpdateRequest);
 
     /**
      * This method returns the location by its ID.

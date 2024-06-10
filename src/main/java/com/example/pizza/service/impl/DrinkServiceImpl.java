@@ -1,7 +1,8 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.DrinkCreateRequest;
+import com.example.pizza.request.drink.DrinkCreateRequest;
+import com.example.pizza.request.drink.DrinkUpdateRequest;
 import com.example.pizza.response.DrinkResponse;
 import com.example.pizza.service.DrinkService;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class DrinkServiceImpl implements DrinkService {
     }
 
     @Override
-    public DrinkResponse update(Long id, DrinkCreateRequest drinkCreateRequest) {
+    public DrinkResponse update(Long id, DrinkUpdateRequest drinkUpdateRequest) {
 
         return null;
     }

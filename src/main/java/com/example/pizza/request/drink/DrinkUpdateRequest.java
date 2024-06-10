@@ -1,11 +1,11 @@
-package com.example.pizza.request;
+package com.example.pizza.request.drink;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public record DrinkCreateRequest(
+public record DrinkUpdateRequest(
 
         @NotNull(message = "{drink.volume.mandatory}")
         @Positive(message = "{drink.volume.positive}")
@@ -17,4 +17,5 @@ public record DrinkCreateRequest(
 
         @NotNull(message = "{drink.informationId.mandatory}")
         Long informationId
-) {}
+) {
+}

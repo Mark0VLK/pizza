@@ -1,4 +1,4 @@
-package com.example.pizza.request;
+package com.example.pizza.request.location;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

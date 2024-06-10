@@ -1,6 +1,7 @@
 package com.example.pizza.service.impl;
 
-import com.example.pizza.request.LocationCreateRequest;
+import com.example.pizza.request.location.LocationCreateRequest;
+import com.example.pizza.request.location.LocationUpdateRequest;
 import com.example.pizza.response.LocationResponse;
 import com.example.pizza.service.LocationService;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public LocationResponse update(Long id, LocationCreateRequest locationCreateRequest) {
+    public LocationResponse update(Long id, LocationUpdateRequest locationUpdateRequest) {
 
         return null;
     }
