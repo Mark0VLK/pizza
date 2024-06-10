@@ -10,6 +10,15 @@ import java.util.List;
 public interface CategoryService {
 
     /**
+     * Deletes a category by its ID.
+     *
+     * @param id      the ID of the category to delete
+     * @param forever a boolean indicating whether to delete the category permanently
+     * @return the deleted category if successfully deleted
+     */
+    Category deleteById(Long id, boolean forever);
+
+    /**
      * Creates a new category.
      *
      * @param categoryCreateRequest information about the category to create

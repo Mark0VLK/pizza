@@ -10,6 +10,14 @@ import java.util.List;
 public interface OrderService {
 
     /**
+     * Deletes an order by its ID.
+     *
+     * @param id the ID of the order to delete
+     * @return the deleted order
+     */
+    Order deleteById(Long id);
+
+    /**
      * Creates a new order based on the provided request data.
      *
      * @param orderCreateRequest the request containing the data for the new order

@@ -12,6 +12,12 @@ import java.util.List;
 public class InformationServiceImpl implements InformationService {
 
     @Override
+    public Information deleteById(Long id) {
+
+        return null;
+    }
+
+    @Override
     public Information create(InformationCreateRequest informationCreateRequest) {
 
         return null;

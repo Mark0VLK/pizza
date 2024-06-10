@@ -10,6 +10,15 @@ import java.util.List;
 public interface DrinkService {
 
     /**
+     * Deletes a drink by its ID.
+     *
+     * @param id      the ID of the drink to delete
+     * @param forever a boolean indicating whether to delete the drink permanently
+     * @return the deleted drink if successfully deleted
+     */
+    Drink deleteById(Long id, boolean forever);
+
+    /**
      * Creates a new drink based on the provided data.
      *
      * @param drinkCreateRequest the data for creating the drink

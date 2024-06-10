@@ -12,6 +12,12 @@ import java.util.List;
 public class DrinkServiceImpl implements DrinkService {
 
     @Override
+    public Drink deleteById(Long id, boolean forever) {
+
+        return null;
+    }
+
+    @Override
     public Drink create(DrinkCreateRequest drinkCreateRequest) {
 
         return null;

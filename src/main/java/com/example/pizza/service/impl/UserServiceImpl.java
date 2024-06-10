@@ -11,6 +11,18 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Override
+    public User addUserLocation(Long userId, Long locationId) {
+
+        return null;
+    }
+
+    @Override
+    public User deleteById(Long id, boolean forever) {
+
+        return null;
+    }
+
+    @Override
     public User create(UserCreateRequest userCreateRequest) {
 
         return null;

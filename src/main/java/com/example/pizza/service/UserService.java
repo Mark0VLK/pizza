@@ -10,6 +10,15 @@ import java.util.List;
 public interface UserService {
 
     /**
+     * This method allows for both permanent and soft deletion of users based on the forever flag.
+     *
+     * @param id      a unique user ID.
+     * @param forever a flag indicating how to delete a user (hard or soft)
+     * @return a deleted user object.
+     */
+    User deleteById(Long id, boolean forever);
+
+    /**
      * This method creates a new user in the system.
      *
      * @param userCreateRequest an object containing information about the user being created.

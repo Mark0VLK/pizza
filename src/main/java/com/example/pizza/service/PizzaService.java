@@ -10,6 +10,15 @@ import java.util.List;
 public interface PizzaService {
 
     /**
+     * This method allows for both permanent and soft deletion of pizza based on the forever flag.
+     *
+     * @param id      the ID of the pizza to delete
+     * @param forever a flag indicating how to delete a pizza (hard or soft)
+     * @return the deleted pizza if successfully deleted
+     */
+    Pizza deleteById(Long id, boolean forever);
+
+    /**
      * Creates a new pizza based on the provided data.
      *
      * @param pizzaCreateRequest the data for creating the pizza

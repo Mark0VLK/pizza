@@ -10,6 +10,14 @@ import java.util.List;
 public interface LocationService {
 
     /**
+     * This method deletes a location by ID
+     *
+     * @param id a unique location ID.
+     * @return a deleted location object.
+     */
+    Location deleteById(Long id);
+
+    /**
      * This method creates a new location in the system.
      *
      * @param locationCreateRequest an object containing information about the location being created.

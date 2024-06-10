@@ -12,6 +12,12 @@ import java.util.List;
 public class DishServiceImpl implements DishService {
 
     @Override
+    public Dish deleteById(Long id, boolean forever) {
+
+        return null;
+    }
+
+    @Override
     public Dish create(DishCreateRequest dishCreateRequest) {
 
         return null;

@@ -12,6 +12,12 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Override
+    public Order deleteById(Long id) {
+
+        return null;
+    }
+
+    @Override
     public Order create(OrderCreateRequest orderCreateRequest) {
 
         return null;

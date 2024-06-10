@@ -10,6 +10,14 @@ import java.util.List;
 public interface InformationService {
 
     /**
+     * Deletes the information entity with the specified ID.
+     *
+     * @param id the ID of the information entity to delete.
+     * @return the deleted information entity, or null if none is found with the specified ID.
+     */
+    Information deleteById(Long id);
+
+    /**
      * Creates a new information entity based on the provided request data.
      *
      * @param informationCreateRequest the request data for creating the information entity.

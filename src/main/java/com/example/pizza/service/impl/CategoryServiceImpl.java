@@ -12,6 +12,12 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Override
+    public Category deleteById(Long id, boolean forever) {
+
+        return null;
+    }
+
+    @Override
     public Category create(CategoryCreateRequest categoryCreateRequest) {
 
         return null;

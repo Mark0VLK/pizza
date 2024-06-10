@@ -12,6 +12,12 @@ import java.util.List;
 public class LocationServiceImpl implements LocationService {
 
     @Override
+    public Location deleteById(Long id) {
+
+        return null;
+    }
+
+    @Override
     public Location create(LocationCreateRequest locationCreateRequest) {
 
         return null;

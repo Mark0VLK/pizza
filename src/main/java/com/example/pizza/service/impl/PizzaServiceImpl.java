@@ -12,6 +12,12 @@ import java.util.List;
 public class PizzaServiceImpl implements PizzaService {
 
     @Override
+    public Pizza deleteById(Long id, boolean forever) {
+
+        return null;
+    }
+
+    @Override
     public Pizza create(PizzaCreateRequest pizzaCreateRequest) {
 
         return null;
