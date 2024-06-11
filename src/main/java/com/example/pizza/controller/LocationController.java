@@ -20,8 +20,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/location")
+@RequestMapping("/api/v1/location")
 public class LocationController {
+
     private final LocationService locationService;
 
     @GetMapping
@@ -31,26 +32,26 @@ public class LocationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LocationResponse> getLocationById(@PathVariable("id") Long id) {
+    public ResponseEntity<LocationResponse> getLocationById(@PathVariable Long id) {
         LocationResponse locationResponse = locationService.getLocationById(id);
         return new ResponseEntity<>(locationResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<LocationResponse> create(@RequestBody LocationCreateRequest locationCreateRequest) {
         LocationResponse locationResponse = locationService.create(locationCreateRequest);
         return new ResponseEntity<>(locationResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LocationResponse> update(@PathVariable("id") Long id,
-                                                           @RequestBody LocationUpdateRequest locationUpdateRequest) {
+    public ResponseEntity<LocationResponse> update(@PathVariable Long id,
+                                                   @RequestBody LocationUpdateRequest locationUpdateRequest) {
         LocationResponse locationResponse = locationService.update(id, locationUpdateRequest);
         return new ResponseEntity<>(locationResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<LocationResponse> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<LocationResponse> delete(@PathVariable Long id) {
         LocationResponse locationResponse = locationService.deleteById(id);
         return new ResponseEntity<>(locationResponse, HttpStatus.OK);
     }

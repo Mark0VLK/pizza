@@ -22,8 +22,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/dish")
+@RequestMapping("/api/v1/dish")
 public class DishController {
+
     private final DishService dishService;
 
     @GetMapping
@@ -33,28 +34,28 @@ public class DishController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DishResponse> getDishById(@PathVariable("id") Long id) {
+    public ResponseEntity<DishResponse> getDishById(@PathVariable Long id) {
         DishResponse dishResponse = dishService.getDishById(id);
         return new ResponseEntity<>(dishResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<DishResponse> create(@RequestBody DishCreateRequest dishCreateRequest) {
         DishResponse dishResponse = dishService.create(dishCreateRequest);
         return new ResponseEntity<>(dishResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DishResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<DishResponse> update(@PathVariable Long id,
                                                @RequestBody DishUpdateRequest dishUpdateRequest) {
         DishResponse dishResponse = dishService.update(id, dishUpdateRequest);
         return new ResponseEntity<>(dishResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DishResponse> delete(@PathVariable("id") Long id,
-                                                   @RequestParam(value = "deleteMode",
-                                                           defaultValue = "SOFT") DeleteMode deleteMode) {
+    public ResponseEntity<DishResponse> delete(@PathVariable Long id,
+                                               @RequestParam(value = "deleteMode", defaultValue = "SOFT")
+                                               DeleteMode deleteMode) {
         DishResponse dishResponse = dishService.deleteById(id, deleteMode);
         return new ResponseEntity<>(dishResponse, HttpStatus.OK);
     }

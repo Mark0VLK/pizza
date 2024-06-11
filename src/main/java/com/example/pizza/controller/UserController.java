@@ -22,39 +22,40 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
+
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllUser() {
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> userResponses = userService.getAllUsers();
         return new ResponseEntity<>(userResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         UserResponse userResponse = userService.getUserById(id);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody UserCreateRequest userCreateRequest) {
         UserResponse userResponse = userService.create(userCreateRequest);
         return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<UserResponse> update(@PathVariable Long id,
                                                @RequestBody UserUpdateRequest userUpdateRequest) {
         UserResponse userResponse = userService.update(id, userUpdateRequest);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserResponse> delete(@PathVariable("id") Long id,
-                                               @RequestParam(value = "deleteMode",
-                                                       defaultValue = "SOFT") DeleteMode deleteMode) {
+    public ResponseEntity<UserResponse> delete(@PathVariable Long id,
+                                               @RequestParam(value = "deleteMode", defaultValue = "SOFT")
+                                               DeleteMode deleteMode) {
         UserResponse userResponse = userService.deleteById(id, deleteMode);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }

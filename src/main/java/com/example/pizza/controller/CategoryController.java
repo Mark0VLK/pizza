@@ -22,8 +22,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/category")
+@RequestMapping("/api/v1/category")
 public class CategoryController {
+
     private final CategoryService categoryService;
 
     @GetMapping
@@ -33,28 +34,28 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable("id") Long id) {
+    public ResponseEntity<CategoryResponse> getCategoryById(@PathVariable Long id) {
         CategoryResponse categoryResponse = categoryService.getCategoryById(id);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<CategoryResponse> create(@RequestBody CategoryCreateRequest categoryCreateRequest) {
         CategoryResponse categoryResponse = categoryService.create(categoryCreateRequest);
         return new ResponseEntity<>(categoryResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<CategoryResponse> update(@PathVariable Long id,
                                                    @RequestBody CategoryUpdateRequest categoryUpdateRequest) {
         CategoryResponse categoryResponse = categoryService.update(id, categoryUpdateRequest);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CategoryResponse> delete(@PathVariable("id") Long id,
-                                                           @RequestParam(value = "deleteMode",
-                                                                   defaultValue = "SOFT") DeleteMode deleteMode) {
+    public ResponseEntity<CategoryResponse> delete(@PathVariable Long id,
+                                                   @RequestParam(value = "deleteMode", defaultValue = "SOFT")
+                                                   DeleteMode deleteMode) {
         CategoryResponse categoryResponse = categoryService.deleteById(id, deleteMode);
         return new ResponseEntity<>(categoryResponse, HttpStatus.OK);
     }

@@ -20,37 +20,38 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/order")
+@RequestMapping("/api/v1/order")
 public class OrderController {
+
     private final OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<OrderResponse>> getOrders() {
+    public ResponseEntity<List<OrderResponse>> getAllOrders() {
         List<OrderResponse> orderResponses = orderService.getAllOrders();
         return new ResponseEntity<>(orderResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> getOrderById(@PathVariable("id") Long id) {
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long id) {
         OrderResponse orderResponse = orderService.getOrderById(id);
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<OrderResponse> create(@RequestBody OrderCreateRequest orderCreateRequest) {
         OrderResponse orderResponse = orderService.create(orderCreateRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<OrderResponse> update(@PathVariable Long id,
                                                 @RequestBody OrderUpdateRequest orderUpdateRequest) {
         OrderResponse orderResponse = orderService.update(id, orderUpdateRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<OrderResponse> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<OrderResponse> delete(@PathVariable Long id) {
         OrderResponse orderResponse = orderService.deleteById(id);
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }

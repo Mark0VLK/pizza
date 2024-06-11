@@ -22,8 +22,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/pizza")
+@RequestMapping("/api/v1/pizza")
 public class PizzaController {
+
     private final PizzaService pizzaService;
 
     @GetMapping
@@ -33,19 +34,19 @@ public class PizzaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PizzaResponse> getPizzaById(@PathVariable("id") Long id) {
+    public ResponseEntity<PizzaResponse> getPizzaById(@PathVariable Long id) {
         PizzaResponse pizzaResponse = pizzaService.getPizzaById(id);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<PizzaResponse> create(@RequestBody PizzaCreateRequest pizzaCreateRequest) {
         PizzaResponse pizzaResponse = pizzaService.create(pizzaCreateRequest);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PizzaResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<PizzaResponse> update(@PathVariable Long id,
                                                 @RequestBody PizzaUpdateRequest pizzaUpdateRequest) {
         PizzaResponse pizzaResponse = pizzaService.update(id, pizzaUpdateRequest);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.OK);
@@ -53,8 +54,8 @@ public class PizzaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<PizzaResponse> delete(@PathVariable("id") Long id,
-                                                     @RequestParam(value = "deleteMode",
-                                                             defaultValue = "SOFT") DeleteMode deleteMode) {
+                                                @RequestParam(value = "deleteMode", defaultValue = "SOFT")
+                                                DeleteMode deleteMode) {
         PizzaResponse pizzaResponse = pizzaService.deleteById(id, deleteMode);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.OK);
     }

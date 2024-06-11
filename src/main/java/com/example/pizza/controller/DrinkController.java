@@ -22,39 +22,40 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/drink")
+@RequestMapping("/api/v1/drink")
 public class DrinkController {
+
     private final DrinkService drinkService;
 
     @GetMapping
-    public ResponseEntity<List<DrinkResponse>> getDrinks() {
+    public ResponseEntity<List<DrinkResponse>> getAllDrinks() {
         List<DrinkResponse> drinkResponse = drinkService.getAllDrinks();
         return new ResponseEntity<>(drinkResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DrinkResponse> getDrinkById(@PathVariable("id") Long id) {
+    public ResponseEntity<DrinkResponse> getDrinkById(@PathVariable Long id) {
         DrinkResponse drinkResponse = drinkService.getDrinkById(id);
         return new ResponseEntity<>(drinkResponse, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<DrinkResponse> create(@RequestBody DrinkCreateRequest drinkCreateRequest) {
         DrinkResponse drinkResponse = drinkService.create(drinkCreateRequest);
         return new ResponseEntity<>(drinkResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DrinkResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<DrinkResponse> update(@PathVariable Long id,
                                                 @RequestBody DrinkUpdateRequest drinkUpdateRequest) {
         DrinkResponse drinkResponse = drinkService.update(id, drinkUpdateRequest);
         return new ResponseEntity<>(drinkResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DrinkResponse> delete(@PathVariable("id") Long id,
-                                                     @RequestParam(value = "deleteMode",
-                                                             defaultValue = "SOFT") DeleteMode deleteMode) {
+    public ResponseEntity<DrinkResponse> delete(@PathVariable Long id,
+                                                @RequestParam(value = "deleteMode", defaultValue = "SOFT")
+                                                DeleteMode deleteMode) {
         DrinkResponse drinkResponse = drinkService.deleteById(id, deleteMode);
         return new ResponseEntity<>(drinkResponse, HttpStatus.OK);
     }

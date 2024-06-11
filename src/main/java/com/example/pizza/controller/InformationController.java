@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/information")
+@RequestMapping("/api/v1/information")
 public class InformationController {
 
     private final InformationService informationService;
@@ -32,26 +32,26 @@ public class InformationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InformationResponse> getInformationById(@PathVariable("id") Long id) {
+    public ResponseEntity<InformationResponse> getInformationById(@PathVariable Long id) {
         InformationResponse informationResponses = informationService.getInformationById(id);
         return new ResponseEntity<>(informationResponses, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<InformationResponse> create(@RequestBody InformationCreateRequest informationCreateRequest) {
         InformationResponse informationResponses = informationService.create(informationCreateRequest);
         return new ResponseEntity<>(informationResponses, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InformationResponse> update(@PathVariable("id") Long id,
+    public ResponseEntity<InformationResponse> update(@PathVariable Long id,
                                                       @RequestBody InformationUpdateRequest informationUpdateRequest) {
         InformationResponse informationResponses = informationService.update(id, informationUpdateRequest);
         return new ResponseEntity<>(informationResponses, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<InformationResponse> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<InformationResponse> delete(@PathVariable Long id) {
         InformationResponse informationResponses = informationService.deleteById(id);
         return new ResponseEntity<>(informationResponses, HttpStatus.OK);
     }
