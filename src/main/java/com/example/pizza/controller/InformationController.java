@@ -51,7 +51,7 @@ public class InformationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<InformationResponse> deleteInformation(@PathVariable("id") Long id) {
+    public ResponseEntity<InformationResponse> delete(@PathVariable("id") Long id) {
         InformationResponse informationResponses = informationService.deleteById(id);
         return new ResponseEntity<>(informationResponses, HttpStatus.OK);
     }

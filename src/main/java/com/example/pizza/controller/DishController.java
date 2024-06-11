@@ -52,7 +52,7 @@ public class DishController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DishResponse> deleteDish(@PathVariable("id") Long id,
+    public ResponseEntity<DishResponse> delete(@PathVariable("id") Long id,
                                                    @RequestParam(value = "deleteMode",
                                                            defaultValue = "SOFT") DeleteMode deleteMode) {
         DishResponse dishResponse = dishService.deleteById(id, deleteMode);

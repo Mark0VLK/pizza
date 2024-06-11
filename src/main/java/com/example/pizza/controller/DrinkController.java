@@ -52,7 +52,7 @@ public class DrinkController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<DrinkResponse> deleteDrink(@PathVariable("id") Long id,
+    public ResponseEntity<DrinkResponse> delete(@PathVariable("id") Long id,
                                                      @RequestParam(value = "deleteMode",
                                                              defaultValue = "SOFT") DeleteMode deleteMode) {
         DrinkResponse drinkResponse = drinkService.deleteById(id, deleteMode);

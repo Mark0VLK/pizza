@@ -52,7 +52,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CategoryResponse> deleteCategory(@PathVariable("id") Long id,
+    public ResponseEntity<CategoryResponse> delete(@PathVariable("id") Long id,
                                                            @RequestParam(value = "deleteMode",
                                                                    defaultValue = "SOFT") DeleteMode deleteMode) {
         CategoryResponse categoryResponse = categoryService.deleteById(id, deleteMode);

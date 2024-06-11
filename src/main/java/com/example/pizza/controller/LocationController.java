@@ -37,20 +37,20 @@ public class LocationController {
     }
 
     @PostMapping()
-    public ResponseEntity<LocationResponse> createLocation(@RequestBody LocationCreateRequest locationCreateRequest) {
+    public ResponseEntity<LocationResponse> create(@RequestBody LocationCreateRequest locationCreateRequest) {
         LocationResponse locationResponse = locationService.create(locationCreateRequest);
         return new ResponseEntity<>(locationResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LocationResponse> updateLocation(@PathVariable("id") Long id,
+    public ResponseEntity<LocationResponse> update(@PathVariable("id") Long id,
                                                            @RequestBody LocationUpdateRequest locationUpdateRequest) {
         LocationResponse locationResponse = locationService.update(id, locationUpdateRequest);
         return new ResponseEntity<>(locationResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<LocationResponse> deleteLocation(@PathVariable("id") Long id) {
+    public ResponseEntity<LocationResponse> delete(@PathVariable("id") Long id) {
         LocationResponse locationResponse = locationService.deleteById(id);
         return new ResponseEntity<>(locationResponse, HttpStatus.OK);
     }

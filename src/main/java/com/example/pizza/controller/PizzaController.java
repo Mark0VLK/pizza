@@ -39,7 +39,7 @@ public class PizzaController {
     }
 
     @PostMapping()
-    public ResponseEntity<PizzaResponse> createPizza(@RequestBody PizzaCreateRequest pizzaCreateRequest) {
+    public ResponseEntity<PizzaResponse> create(@RequestBody PizzaCreateRequest pizzaCreateRequest) {
         PizzaResponse pizzaResponse = pizzaService.create(pizzaCreateRequest);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.CREATED);
     }
@@ -52,7 +52,7 @@ public class PizzaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<PizzaResponse> deletePizza(@PathVariable("id") Long id,
+    public ResponseEntity<PizzaResponse> delete(@PathVariable("id") Long id,
                                                      @RequestParam(value = "deleteMode",
                                                              defaultValue = "SOFT") DeleteMode deleteMode) {
         PizzaResponse pizzaResponse = pizzaService.deleteById(id, deleteMode);
