@@ -24,9 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse deleteById(Long id, DeleteMode deleteMode) {
         Category category = categoryRepository.findById(id).orElse(null);
         switch (deleteMode) {
-            case HARD -> {
-                categoryRepository.deleteById(id);
-            }
+            case HARD -> categoryRepository.deleteById(id);
             case SOFT -> {
                 if (category != null) {
                     category.setIsDeleted(true);

@@ -2,7 +2,6 @@ package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.mapper.DishMapper;
-import com.example.pizza.model.Category;
 import com.example.pizza.model.Dish;
 import com.example.pizza.model.Information;
 import com.example.pizza.repositories.DishRepository;
@@ -28,9 +27,7 @@ public class DishServiceImpl implements DishService {
     public DishResponse deleteById(Long id, DeleteMode deleteMode) {
         Dish dish = dishRepository.findById(id).orElse(null);
         switch (deleteMode) {
-            case HARD -> {
-                dishRepository.deleteById(id);
-            }
+            case HARD -> dishRepository.deleteById(id);
             case SOFT -> {
                 if (dish != null) {
                     dish.setIsDeleted(true);
