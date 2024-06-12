@@ -1,5 +1,6 @@
 package com.example.pizza.service.impl;
 
+import com.example.pizza.exception.EntityNotFoundException;
 import com.example.pizza.mapper.InformationMapper;
 import com.example.pizza.model.Category;
 import com.example.pizza.model.Information;
@@ -24,10 +25,9 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public InformationResponse deleteById(Long id) {
-        Information information = informationRepository.findById(id).orElse(null);
-        if (information != null) {
-            informationRepository.delete(information);
-        }
+        Information information = informationRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("information", id));
+        informationRepository.delete(information);
         return informationMapper.informationToResponse(information);
     }
 
@@ -40,25 +40,26 @@ public class InformationServiceImpl implements InformationService {
 
     @Override
     public InformationResponse update(Long id, InformationUpdateRequest informationUpdateRequest) {
-        Information information = informationRepository.findById(id).orElse(null);
-        if (information != null) {
-            information.setName(informationUpdateRequest.name());
-            information.setDescription(informationUpdateRequest.description());
-            information.setEnergyValue(informationUpdateRequest.energyValue());
-            information.setProteins(informationUpdateRequest.proteins());
-            information.setFat(informationUpdateRequest.fat());
-            information.setCarb(informationUpdateRequest.carb());
-            Category category = categoryRepository.findById(informationUpdateRequest.categoryId()).orElse(null);
-            information.setCategory(category);
-            information.setImage(informationUpdateRequest.image());
-            informationRepository.save(information);
-        }
+        Information information = informationRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("information", id));
+        information.setName(informationUpdateRequest.name());
+        information.setDescription(informationUpdateRequest.description());
+        information.setEnergyValue(informationUpdateRequest.energyValue());
+        information.setProteins(informationUpdateRequest.proteins());
+        information.setFat(informationUpdateRequest.fat());
+        information.setCarb(informationUpdateRequest.carb());
+        Category category = categoryRepository.findById(informationUpdateRequest.categoryId())
+                .orElseThrow(() -> new EntityNotFoundException("category", informationUpdateRequest.categoryId()));
+        information.setCategory(category);
+        information.setImage(informationUpdateRequest.image());
+        informationRepository.save(information);
         return informationMapper.informationToResponse(information);
     }
 
     @Override
     public InformationResponse getInformationById(Long id) {
-        Information information = informationRepository.findById(id).orElse(null);
+        Information information = informationRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("information", id));
         return informationMapper.informationToResponse(information);
     }
 

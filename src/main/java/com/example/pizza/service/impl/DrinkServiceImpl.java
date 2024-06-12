@@ -1,6 +1,7 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
+import com.example.pizza.exception.EntityNotFoundException;
 import com.example.pizza.mapper.DrinkMapper;
 import com.example.pizza.model.Drink;
 import com.example.pizza.model.Information;
@@ -25,14 +26,12 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public DrinkResponse deleteById(Long id, DeleteMode deleteMode) {
-        Drink drink = drinkRepository.findById(id).orElse(null);
+        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
         switch (deleteMode) {
             case HARD -> drinkRepository.deleteById(id);
             case SOFT -> {
-                if (drink != null) {
-                    drink.setIsDeleted(true);
-                    drinkRepository.save(drink);
-                }
+                drink.setIsDeleted(true);
+                drinkRepository.save(drink);
             }
         }
         return drinkMapper.drinkToResponse(drink);
@@ -47,20 +46,19 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public DrinkResponse update(Long id, DrinkUpdateRequest drinkUpdateRequest) {
-        Drink drink = drinkRepository.findById(id).orElse(null);
-        if (drink != null) {
-            drink.setVolume(drinkUpdateRequest.volume());
-            drink.setPrice(drinkUpdateRequest.price());
-            Information information = informationRepository.findById(drinkUpdateRequest.informationId()).orElse(null);
-            drink.setInformation(information);
-            drinkRepository.save(drink);
-        }
+        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
+        drink.setVolume(drinkUpdateRequest.volume());
+        drink.setPrice(drinkUpdateRequest.price());
+        Information information = informationRepository.findById(drinkUpdateRequest.informationId())
+                .orElseThrow(() -> new EntityNotFoundException("information", drinkUpdateRequest.informationId()));
+        drink.setInformation(information);
+        drinkRepository.save(drink);
         return drinkMapper.drinkToResponse(drink);
     }
 
     @Override
     public DrinkResponse getDrinkById(Long id) {
-        Drink drink = drinkRepository.findById(id).orElse(null);
+        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
         return drinkMapper.drinkToResponse(drink);
     }
 

@@ -1,6 +1,7 @@
 package com.example.pizza.service.impl;
 
 import com.example.pizza.enums.DeleteMode;
+import com.example.pizza.exception.EntityNotFoundException;
 import com.example.pizza.mapper.DishMapper;
 import com.example.pizza.model.Dish;
 import com.example.pizza.model.Information;
@@ -25,14 +26,12 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishResponse deleteById(Long id, DeleteMode deleteMode) {
-        Dish dish = dishRepository.findById(id).orElse(null);
+        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
         switch (deleteMode) {
             case HARD -> dishRepository.deleteById(id);
             case SOFT -> {
-                if (dish != null) {
-                    dish.setIsDeleted(true);
-                    dishRepository.save(dish);
-                }
+                dish.setIsDeleted(true);
+                dishRepository.save(dish);
             }
         }
         return dishMapper.dishToResponse(dish);
@@ -47,21 +46,20 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishResponse update(Long id, DishUpdateRequest dishUpdateRequest) {
-        Dish dish = dishRepository.findById(id).orElse(null);
-        if (dish != null) {
-            dish.setNumberOfPieces(dishUpdateRequest.numberOfPieces());
-            dish.setWeight(dishUpdateRequest.weight());
-            dish.setPrice(dishUpdateRequest.price());
-            Information information = informationRepository.findById(dishUpdateRequest.informationId()).orElse(null);
-            dish.setInformation(information);
-            dishRepository.save(dish);
-        }
+        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
+        dish.setNumberOfPieces(dishUpdateRequest.numberOfPieces());
+        dish.setWeight(dishUpdateRequest.weight());
+        dish.setPrice(dishUpdateRequest.price());
+        Information information = informationRepository.findById(dishUpdateRequest.informationId())
+                .orElseThrow(() -> new EntityNotFoundException("information", dishUpdateRequest.informationId()));
+        dish.setInformation(information);
+        dishRepository.save(dish);
         return dishMapper.dishToResponse(dish);
     }
 
     @Override
     public DishResponse getDishById(Long id) {
-        Dish dish = dishRepository.findById(id).orElse(null);
+        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
         return dishMapper.dishToResponse(dish);
     }
 

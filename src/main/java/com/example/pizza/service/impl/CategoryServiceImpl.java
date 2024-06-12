@@ -8,6 +8,7 @@ import com.example.pizza.request.category.CategoryCreateRequest;
 import com.example.pizza.request.category.CategoryUpdateRequest;
 import com.example.pizza.response.CategoryResponse;
 import com.example.pizza.service.CategoryService;
+import com.example.pizza.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +23,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse deleteById(Long id, DeleteMode deleteMode) {
-        Category category = categoryRepository.findById(id).orElse(null);
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
         switch (deleteMode) {
             case HARD -> categoryRepository.deleteById(id);
             case SOFT -> {
-                if (category != null) {
-                    category.setIsDeleted(true);
-                    categoryRepository.save(category);
-                }
+                category.setIsDeleted(true);
+                categoryRepository.save(category);
             }
         }
         return categoryMapper.categoryToResponse(category);
@@ -44,17 +43,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse update(Long id, CategoryUpdateRequest categoryUpdateRequest) {
-        Category category = categoryRepository.findById(id).orElse(null);
-        if (category != null) {
-            category.setName(categoryUpdateRequest.name());
-            categoryRepository.save(category);
-        }
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
+        category.setName(categoryUpdateRequest.name());
+        categoryRepository.save(category);
         return categoryMapper.categoryToResponse(category);
     }
 
     @Override
     public CategoryResponse getCategoryById(Long id) {
-        Category category = categoryRepository.findById(id).orElse(null);
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
         return categoryMapper.categoryToResponse(category);
     }
 
