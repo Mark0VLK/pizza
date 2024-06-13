@@ -10,10 +10,12 @@ import java.util.List;
 
 @Mapper(uses = {InformationMapper.class})
 public interface DrinkMapper {
+
     @Mapping(source = "informationId", target = "information")
     Drink createRequestToDrink(DrinkCreateRequest drinkCreateRequest);
+
     @Mapping(source = "information.id", target = "informationId")
     DrinkResponse drinkToResponse(Drink drink);
-    List<DrinkResponse> drinksToResponses(List<Drink> drinks);
 
+    List<DrinkResponse> drinksToResponses(List<Drink> drinks);
 }

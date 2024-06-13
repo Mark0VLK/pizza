@@ -29,4 +29,30 @@
                              tableName="drinks_order"/>
     </changeSet>
 
+
+    <changeSet id="v1-10.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="drinks_order"/>
+                <not>
+                    <sequenceExists sequenceName="drinks_order_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE drinks_order_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE drinks_order_id_seq OWNED BY drinks_order.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE drinks_order
+                ALTER COLUMN id SET DEFAULT nextval('drinks_order_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

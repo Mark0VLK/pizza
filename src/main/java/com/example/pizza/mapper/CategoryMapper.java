@@ -10,9 +10,13 @@ import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
+
     Category createRequestToCategory(CategoryCreateRequest categoryCreateRequest);
+
     CategoryResponse categoryToResponse(Category category);
+
     List<CategoryResponse> categoriesToResponses(List<Category> categories);
+
     @Mapping(target = "id", source = "categoryId")
     Category toEntity(Long categoryId);
 }

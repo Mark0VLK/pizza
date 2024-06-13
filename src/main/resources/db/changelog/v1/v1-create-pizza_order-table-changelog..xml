@@ -28,4 +28,30 @@
         <addUniqueConstraint columnNames="order_id, pizza_id" constraintName="pizza_order_pk" tableName="pizza_order"/>
     </changeSet>
 
+
+    <changeSet id="v1-11.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="pizza_order"/>
+                <not>
+                    <sequenceExists sequenceName="pizza_order_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE pizza_order_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE pizza_order_id_seq OWNED BY pizza_order.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE pizza_order
+                ALTER COLUMN id SET DEFAULT nextval('pizza_order_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

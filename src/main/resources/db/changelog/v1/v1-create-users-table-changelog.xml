@@ -43,4 +43,30 @@
         <addUniqueConstraint columnNames="phone_number" constraintName="idx_user_phone_uniq" tableName="users"/>
     </changeSet>
 
+
+    <changeSet id="v1-7.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="users"/>
+                <not>
+                    <sequenceExists sequenceName="users_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE users_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE users_id_seq OWNED BY users.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE users
+                ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
