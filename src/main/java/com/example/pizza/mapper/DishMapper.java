@@ -11,9 +11,12 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {InformationMapper.class})
 public interface DishMapper {
+
     @Mapping(source = "informationId", target = "information")
     Dish createRequestToDish(DishCreateRequest dishCreateRequest);
+
     @Mapping(source = "information.id", target = "informationId")
     DishResponse dishToResponse(Dish dish);
+
     List<DishResponse> dishesToResponses(List<Dish> dishes);
 }

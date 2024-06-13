@@ -14,9 +14,12 @@ public interface InformationMapper {
 
     @Mapping(source = "categoryId", target = "category")
     Information createRequestToInformation(InformationCreateRequest informationCreateRequest);
+
     @Mapping(source = "category.id", target = "categoryId")
     InformationResponse informationToResponse(Information information);
+
     List<InformationResponse> informationListToResponses(List<Information> informationList);
+
     @Mapping(target = "id", source = "informationId")
     Information toEntity(Long informationId);
 }

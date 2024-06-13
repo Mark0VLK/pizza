@@ -11,9 +11,13 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CategoryMapper {
+
     Category createRequestToCategory(CategoryCreateRequest categoryCreateRequest);
+
     CategoryResponse categoryToResponse(Category category);
+
     List<CategoryResponse> categoriesToResponses(List<Category> categories);
+
     @Mapping(target = "id", source = "categoryId")
     Category toEntity(Long categoryId);
 }
