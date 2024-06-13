@@ -23,7 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse deleteById(Long id, DeleteMode deleteMode) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("category", id));
         switch (deleteMode) {
             case HARD -> categoryRepository.deleteById(id);
             case SOFT -> {
@@ -43,7 +44,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse update(Long id, CategoryUpdateRequest categoryUpdateRequest) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("category", id));
         category.setName(categoryUpdateRequest.name());
         categoryRepository.save(category);
         return categoryMapper.categoryToResponse(category);
@@ -51,7 +53,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse getCategoryById(Long id) {
-        Category category = categoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("category", id));
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("category", id));
         return categoryMapper.categoryToResponse(category);
     }
 

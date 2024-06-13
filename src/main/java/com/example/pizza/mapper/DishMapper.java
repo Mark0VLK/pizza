@@ -5,10 +5,11 @@ import com.example.pizza.request.dish.DishCreateRequest;
 import com.example.pizza.response.DishResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(uses = {InformationMapper.class})
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {InformationMapper.class})
 public interface DishMapper {
     @Mapping(source = "informationId", target = "information")
     Dish createRequestToDish(DishCreateRequest dishCreateRequest);

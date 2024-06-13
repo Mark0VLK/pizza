@@ -26,7 +26,8 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishResponse deleteById(Long id, DeleteMode deleteMode) {
-        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
+        Dish dish = dishRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("dish", id));
         switch (deleteMode) {
             case HARD -> dishRepository.deleteById(id);
             case SOFT -> {
@@ -46,20 +47,26 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishResponse update(Long id, DishUpdateRequest dishUpdateRequest) {
-        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
-        dish.setNumberOfPieces(dishUpdateRequest.numberOfPieces());
-        dish.setWeight(dishUpdateRequest.weight());
-        dish.setPrice(dishUpdateRequest.price());
+        Dish dish = dishRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("dish", id));
         Information information = informationRepository.findById(dishUpdateRequest.informationId())
                 .orElseThrow(() -> new EntityNotFoundException("information", dishUpdateRequest.informationId()));
-        dish.setInformation(information);
+        updateDishFields(dish, dishUpdateRequest, information);
         dishRepository.save(dish);
         return dishMapper.dishToResponse(dish);
     }
 
+    private void updateDishFields(Dish dish, DishUpdateRequest dishUpdateRequest, Information information) {
+        dish.setNumberOfPieces(dishUpdateRequest.numberOfPieces());
+        dish.setWeight(dishUpdateRequest.weight());
+        dish.setPrice(dishUpdateRequest.price());
+        dish.setInformation(information);
+    }
+
     @Override
     public DishResponse getDishById(Long id) {
-        Dish dish = dishRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("dish", id));
+        Dish dish = dishRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("dish", id));
         return dishMapper.dishToResponse(dish);
     }
 

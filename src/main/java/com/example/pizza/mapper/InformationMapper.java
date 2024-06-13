@@ -5,10 +5,11 @@ import com.example.pizza.request.information.InformationCreateRequest;
 import com.example.pizza.response.InformationResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(uses = {CategoryMapper.class})
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {CategoryMapper.class})
 public interface InformationMapper {
 
     @Mapping(source = "categoryId", target = "category")

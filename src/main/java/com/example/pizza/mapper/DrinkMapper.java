@@ -5,10 +5,11 @@ import com.example.pizza.request.drink.DrinkCreateRequest;
 import com.example.pizza.response.DrinkResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(uses = {InformationMapper.class})
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {InformationMapper.class})
 public interface DrinkMapper {
     @Mapping(source = "informationId", target = "information")
     Drink createRequestToDrink(DrinkCreateRequest drinkCreateRequest);

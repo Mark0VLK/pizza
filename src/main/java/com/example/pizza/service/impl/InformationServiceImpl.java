@@ -42,18 +42,22 @@ public class InformationServiceImpl implements InformationService {
     public InformationResponse update(Long id, InformationUpdateRequest informationUpdateRequest) {
         Information information = informationRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("information", id));
-        information.setName(informationUpdateRequest.name());
-        information.setDescription(informationUpdateRequest.description());
-        information.setEnergyValue(informationUpdateRequest.energyValue());
-        information.setProteins(informationUpdateRequest.proteins());
-        information.setFat(informationUpdateRequest.fat());
-        information.setCarb(informationUpdateRequest.carb());
         Category category = categoryRepository.findById(informationUpdateRequest.categoryId())
                 .orElseThrow(() -> new EntityNotFoundException("category", informationUpdateRequest.categoryId()));
-        information.setCategory(category);
-        information.setImage(informationUpdateRequest.image());
+        updateInformationFields(information, informationUpdateRequest, category);
         informationRepository.save(information);
         return informationMapper.informationToResponse(information);
+    }
+
+    private void updateInformationFields(Information information, InformationUpdateRequest request, Category category) {
+        information.setName(request.name());
+        information.setDescription(request.description());
+        information.setEnergyValue(request.energyValue());
+        information.setProteins(request.proteins());
+        information.setFat(request.fat());
+        information.setCarb(request.carb());
+        information.setCategory(category);
+        information.setImage(request.image());
     }
 
     @Override

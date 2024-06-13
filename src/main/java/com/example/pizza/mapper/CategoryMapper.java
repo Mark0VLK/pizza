@@ -5,10 +5,11 @@ import com.example.pizza.request.category.CategoryCreateRequest;
 import com.example.pizza.response.CategoryResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CategoryMapper {
     Category createRequestToCategory(CategoryCreateRequest categoryCreateRequest);
     CategoryResponse categoryToResponse(Category category);

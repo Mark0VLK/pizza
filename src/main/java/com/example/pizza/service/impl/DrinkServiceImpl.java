@@ -26,7 +26,8 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public DrinkResponse deleteById(Long id, DeleteMode deleteMode) {
-        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
+        Drink drink = drinkRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("drink", id));
         switch (deleteMode) {
             case HARD -> drinkRepository.deleteById(id);
             case SOFT -> {
@@ -46,7 +47,8 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public DrinkResponse update(Long id, DrinkUpdateRequest drinkUpdateRequest) {
-        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
+        Drink drink = drinkRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("drink", id));
         drink.setVolume(drinkUpdateRequest.volume());
         drink.setPrice(drinkUpdateRequest.price());
         Information information = informationRepository.findById(drinkUpdateRequest.informationId())
@@ -58,7 +60,8 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public DrinkResponse getDrinkById(Long id) {
-        Drink drink = drinkRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("drink", id));
+        Drink drink = drinkRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("drink", id));
         return drinkMapper.drinkToResponse(drink);
     }
 
