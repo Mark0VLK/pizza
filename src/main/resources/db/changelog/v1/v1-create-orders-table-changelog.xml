@@ -34,4 +34,30 @@
         </createTable>
     </changeSet>
 
+
+    <changeSet id="v1-8.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="orders"/>
+                <not>
+                    <sequenceExists sequenceName="orders_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE orders_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE orders_id_seq OWNED BY orders.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE orders
+                ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
