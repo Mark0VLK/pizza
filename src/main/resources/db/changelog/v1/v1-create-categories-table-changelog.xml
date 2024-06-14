@@ -29,4 +29,30 @@
         <addUniqueConstraint columnNames="name" constraintName="idx_category_name_uniq" tableName="categories"/>
     </changeSet>
 
+
+    <changeSet id="v1-1.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="categories"/>
+                <not>
+                    <sequenceExists sequenceName="categories_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE categories_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE categories
+                ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

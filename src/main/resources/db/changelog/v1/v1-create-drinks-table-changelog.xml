@@ -38,4 +38,30 @@
         </createIndex>
     </changeSet>
 
+
+    <changeSet id="v1-4.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="drinks"/>
+                <not>
+                    <sequenceExists sequenceName="drinks_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE drinks_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE drinks_id_seq OWNED BY drinks.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE drinks
+                ALTER COLUMN id SET DEFAULT nextval('drinks_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

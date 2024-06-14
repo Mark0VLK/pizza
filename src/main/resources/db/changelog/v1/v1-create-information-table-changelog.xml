@@ -36,5 +36,30 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="v1-2.2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="information"/>
+                <not>
+                    <sequenceExists sequenceName="information_id_seq"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <sql>
+            CREATE SEQUENCE information_id_seq;
+        </sql>
+
+        <sql>
+            ALTER SEQUENCE information_id_seq OWNED BY information.id;
+        </sql>
+
+        <sql>
+            ALTER TABLE information
+                ALTER COLUMN id SET DEFAULT nextval('information_id_seq'::regclass);
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
 
