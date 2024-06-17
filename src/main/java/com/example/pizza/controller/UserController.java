@@ -59,4 +59,10 @@ public class UserController {
         UserResponse userResponse = userService.deleteById(id, deleteMode);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
+
+    @PostMapping("/{userId}/{locationId}")
+    public ResponseEntity<UserResponse> addLocation(@PathVariable Long userId, @PathVariable Long locationId) {
+        UserResponse userResponse = userService.addUserLocation(userId, locationId);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+    }
 }
