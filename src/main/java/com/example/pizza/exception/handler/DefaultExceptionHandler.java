@@ -1,6 +1,7 @@
 package com.example.pizza.exception.handler;
 
 import com.example.pizza.exception.EntityNotFoundException;
+import com.example.pizza.exception.UserNotFoundException;
 import com.example.pizza.response.ErrorMessage;
 import com.example.pizza.util.RandomValuesGenerator;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import static com.example.pizza.enums.exeption.ApplicationErrorCodes.ENTITY_NOT_FOUND_ERROR;
 import static com.example.pizza.enums.exeption.ApplicationErrorCodes.FATAL_ERROR;
+import static com.example.pizza.enums.exeption.ApplicationErrorCodes.USER_NOT_FOUND_ERROR;
 
 @Slf4j
 @ControllerAdvice
@@ -46,6 +48,19 @@ public class DefaultExceptionHandler {
                 new ErrorMessage(
                         getExceptionId(e),
                         ENTITY_NOT_FOUND_ERROR.getCodeId(),
+                        e.getMessage()
+                ),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handleUserNotFoundException(UserNotFoundException e) {
+
+        return new ResponseEntity<>(
+                new ErrorMessage(
+                        getExceptionId(e),
+                        USER_NOT_FOUND_ERROR.getCodeId(),
                         e.getMessage()
                 ),
                 HttpStatus.NOT_FOUND

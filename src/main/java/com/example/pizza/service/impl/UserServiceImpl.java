@@ -7,7 +7,6 @@ import com.example.pizza.model.Location;
 import com.example.pizza.model.User;
 import com.example.pizza.repositories.LocationRepository;
 import com.example.pizza.repositories.UserRepository;
-import com.example.pizza.request.user.UserCreateRequest;
 import com.example.pizza.request.user.UserUpdateRequest;
 import com.example.pizza.response.UserResponse;
 import com.example.pizza.service.UserService;
@@ -51,13 +50,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse create(UserCreateRequest userCreateRequest) {
-        User user = userMapper.createRequestToUser(userCreateRequest);
-        userRepository.save(user);
-        return userMapper.userToResponse(user);
-    }
-
-    @Override
     public UserResponse update(Long id, UserUpdateRequest userUpdateRequest) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("user", id));
@@ -72,6 +64,7 @@ public class UserServiceImpl implements UserService {
         user.setSurname(userUpdateRequest.surname());
         user.setPhoneNumber(userUpdateRequest.phoneNumber());
         user.setEmail(userUpdateRequest.email());
+        user.setLogin(userUpdateRequest.login());
         user.setPassword(userUpdateRequest.password());
         user.setBirthDate(userUpdateRequest.birthDate());
     }

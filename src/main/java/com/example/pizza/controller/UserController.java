@@ -1,7 +1,6 @@
 package com.example.pizza.controller;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.user.UserCreateRequest;
 import com.example.pizza.request.user.UserUpdateRequest;
 import com.example.pizza.response.UserResponse;
 import com.example.pizza.service.UserService;
@@ -37,12 +36,6 @@ public class UserController {
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         UserResponse userResponse = userService.getUserById(id);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserCreateRequest userCreateRequest) {
-        UserResponse userResponse = userService.create(userCreateRequest);
-        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
