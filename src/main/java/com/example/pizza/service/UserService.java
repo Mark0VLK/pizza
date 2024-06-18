@@ -1,7 +1,6 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.user.UserCreateRequest;
 import com.example.pizza.request.user.UserUpdateRequest;
 import com.example.pizza.response.UserResponse;
 
@@ -27,15 +26,6 @@ public interface UserService {
      * @return the deleted UserResponse object.
      */
     UserResponse deleteById(Long id, DeleteMode deleteMode);
-
-    /**
-     * This method creates a new user in the system.
-     *
-     * @param userCreateRequest the UserCreateRequest object containing information about the user
-     *                          to create.
-     * @return the created UserResponse object.
-     */
-    UserResponse create(UserCreateRequest userCreateRequest);
 
     /**
      * This method updates information about an existing user in the system.
