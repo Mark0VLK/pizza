@@ -3,12 +3,17 @@ package com.example.pizza.service.impl;
 import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.exception.EntityNotFoundException;
 import com.example.pizza.mapper.DrinkMapper;
+import com.example.pizza.mapper.DrinkOrderMapper;
 import com.example.pizza.model.Drink;
+import com.example.pizza.model.DrinkOrder;
 import com.example.pizza.model.Information;
+import com.example.pizza.repositories.DrinkOrderRepository;
 import com.example.pizza.repositories.DrinkRepository;
 import com.example.pizza.repositories.InformationRepository;
 import com.example.pizza.request.drink.DrinkCreateRequest;
 import com.example.pizza.request.drink.DrinkUpdateRequest;
+import com.example.pizza.request.product.ProductOrderCreateRequest;
+import com.example.pizza.request.product.ProductOrderUpdateRequest;
 import com.example.pizza.response.DrinkResponse;
 import com.example.pizza.service.DrinkService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +28,8 @@ public class DrinkServiceImpl implements DrinkService {
     private final DrinkRepository drinkRepository;
     private final DrinkMapper drinkMapper;
     private final InformationRepository informationRepository;
+    private final DrinkOrderRepository drinkOrderRepository;
+    private final DrinkOrderMapper drinkOrderMapper;
 
     @Override
     public DrinkResponse deleteById(Long id, DeleteMode deleteMode) {
@@ -69,5 +76,28 @@ public class DrinkServiceImpl implements DrinkService {
     public List<DrinkResponse> getAllDrinks() {
         List<Drink> drinks = drinkRepository.findAll();
         return drinkMapper.drinksToResponses(drinks);
+    }
+
+    @Override
+    public DrinkOrder addDrink(ProductOrderCreateRequest productOrderCreateRequest) {
+
+        DrinkOrder drinkOrder = drinkOrderMapper.createRequestToDrinkOrder(productOrderCreateRequest);
+        return drinkOrderRepository.save(drinkOrder);
+    }
+
+    @Override
+    public DrinkOrder changeDrink(Long id, ProductOrderUpdateRequest productOrderUpdateRequest) {
+
+        DrinkOrder drinkOrder = drinkOrderMapper.updateRequestToDrinkOrder(id, productOrderUpdateRequest);
+        return drinkOrderRepository.save(drinkOrder);
+    }
+
+    @Override
+    public DrinkOrder deleteDrink(Long id) {
+
+        return drinkOrderRepository.findById(id).map(drinkOrder -> {
+            drinkOrderRepository.deleteById(id);
+            return drinkOrder;
+        }).orElseThrow(() -> new EntityNotFoundException("drink from the order", id));
     }
 }
