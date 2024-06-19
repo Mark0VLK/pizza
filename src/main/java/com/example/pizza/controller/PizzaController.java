@@ -1,8 +1,11 @@
 package com.example.pizza.controller;
 
 import com.example.pizza.enums.DeleteMode;
+import com.example.pizza.model.PizzaOrder;
 import com.example.pizza.request.pizza.PizzaCreateRequest;
 import com.example.pizza.request.pizza.PizzaUpdateRequest;
+import com.example.pizza.request.product.ProductOrderCreateRequest;
+import com.example.pizza.request.product.ProductOrderUpdateRequest;
 import com.example.pizza.response.PizzaResponse;
 import com.example.pizza.service.PizzaService;
 import lombok.RequiredArgsConstructor;
@@ -58,5 +61,26 @@ public class PizzaController {
                                                 DeleteMode deleteMode) {
         PizzaResponse pizzaResponse = pizzaService.deleteById(id, deleteMode);
         return new ResponseEntity<>(pizzaResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/product-order")
+    public ResponseEntity<PizzaOrder> addPizzaToTheOrder(
+            @RequestBody ProductOrderCreateRequest productOrderCreateRequest) {
+        PizzaOrder pizzaOrder = pizzaService.addPizza(productOrderCreateRequest);
+        return new ResponseEntity<>(pizzaOrder, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/product-order/{id}")
+    public ResponseEntity<PizzaOrder> changePizzaInTheOrder(
+            @RequestBody ProductOrderUpdateRequest productOrderUpdateRequest,
+            @PathVariable Long id) {
+        PizzaOrder pizzaOrder = pizzaService.changePizza(id, productOrderUpdateRequest);
+        return new ResponseEntity<>(pizzaOrder, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/product-order/{id}")
+    public ResponseEntity<PizzaOrder> removePizzaFromTheOrder(@PathVariable Long id) {
+        PizzaOrder pizzaOrder = pizzaService.deletePizza(id);
+        return new ResponseEntity<>(pizzaOrder, HttpStatus.OK);
     }
 }
