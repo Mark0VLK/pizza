@@ -1,11 +1,11 @@
 package com.example.pizza.controller;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.model.PizzaOrder;
 import com.example.pizza.request.pizza.PizzaCreateRequest;
 import com.example.pizza.request.pizza.PizzaUpdateRequest;
 import com.example.pizza.request.product.ProductOrderCreateRequest;
 import com.example.pizza.request.product.ProductOrderUpdateRequest;
+import com.example.pizza.response.PizzaOrderResponse;
 import com.example.pizza.response.PizzaResponse;
 import com.example.pizza.service.PizzaService;
 import lombok.RequiredArgsConstructor;
@@ -64,23 +64,23 @@ public class PizzaController {
     }
 
     @PostMapping("/product-order")
-    public ResponseEntity<PizzaOrder> addPizzaToTheOrder(
+    public ResponseEntity<PizzaOrderResponse> addPizzaToTheOrder(
             @RequestBody ProductOrderCreateRequest productOrderCreateRequest) {
-        PizzaOrder pizzaOrder = pizzaService.addPizza(productOrderCreateRequest);
-        return new ResponseEntity<>(pizzaOrder, HttpStatus.CREATED);
+        PizzaOrderResponse pizzaOrderResponse = pizzaService.addPizza(productOrderCreateRequest);
+        return new ResponseEntity<>(pizzaOrderResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/product-order/{id}")
-    public ResponseEntity<PizzaOrder> changePizzaInTheOrder(
+    public ResponseEntity<PizzaOrderResponse> changePizzaInTheOrder(
             @RequestBody ProductOrderUpdateRequest productOrderUpdateRequest,
             @PathVariable Long id) {
-        PizzaOrder pizzaOrder = pizzaService.changePizza(id, productOrderUpdateRequest);
-        return new ResponseEntity<>(pizzaOrder, HttpStatus.OK);
+        PizzaOrderResponse pizzaOrderResponse = pizzaService.changePizza(id, productOrderUpdateRequest);
+        return new ResponseEntity<>(pizzaOrderResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/product-order/{id}")
-    public ResponseEntity<PizzaOrder> removePizzaFromTheOrder(@PathVariable Long id) {
-        PizzaOrder pizzaOrder = pizzaService.deletePizza(id);
-        return new ResponseEntity<>(pizzaOrder, HttpStatus.OK);
+    public ResponseEntity<PizzaOrderResponse> removePizzaFromTheOrder(@PathVariable Long id) {
+        PizzaOrderResponse pizzaOrderResponse = pizzaService.deletePizza(id);
+        return new ResponseEntity<>(pizzaOrderResponse, HttpStatus.OK);
     }
 }

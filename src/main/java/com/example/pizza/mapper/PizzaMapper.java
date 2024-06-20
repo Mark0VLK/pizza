@@ -19,4 +19,7 @@ public interface PizzaMapper {
     PizzaResponse pizzaToResponse(Pizza pizza);
 
     List<PizzaResponse> pizzasToResponses(List<Pizza> pizzas);
+
+    @Mapping(target = "id", source = "productId")
+    Pizza toEntity(Long productId);
 }

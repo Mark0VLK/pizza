@@ -1,11 +1,11 @@
 package com.example.pizza.service;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.model.PizzaOrder;
 import com.example.pizza.request.pizza.PizzaCreateRequest;
 import com.example.pizza.request.pizza.PizzaUpdateRequest;
 import com.example.pizza.request.product.ProductOrderCreateRequest;
 import com.example.pizza.request.product.ProductOrderUpdateRequest;
+import com.example.pizza.response.PizzaOrderResponse;
 import com.example.pizza.response.PizzaResponse;
 
 import java.util.List;
@@ -60,7 +60,7 @@ public interface PizzaService {
      * @param productOrderCreateRequest the request containing data for creating a new pizza order
      * @return the newly created pizza order
      */
-    PizzaOrder addPizza(ProductOrderCreateRequest productOrderCreateRequest);
+    PizzaOrderResponse addPizza(ProductOrderCreateRequest productOrderCreateRequest);
 
     /**
      * Changes an existing pizza order based on the provided update request.
@@ -69,7 +69,7 @@ public interface PizzaService {
      * @param productOrderUpdateRequest the request containing data for updating an existing pizza order
      * @return the updated pizza order
      */
-    PizzaOrder changePizza(Long id, ProductOrderUpdateRequest productOrderUpdateRequest);
+    PizzaOrderResponse changePizza(Long id, ProductOrderUpdateRequest productOrderUpdateRequest);
 
     /**
      * Deletes a pizza order with the specified ID.
@@ -77,6 +77,6 @@ public interface PizzaService {
      * @param id the ID of the pizza order to delete
      * @return the deleted pizza order
      */
-    PizzaOrder deletePizza(Long id);
+    PizzaOrderResponse deletePizza(Long id);
 
 }
