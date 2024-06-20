@@ -19,4 +19,7 @@ public interface DishMapper {
     DishResponse dishToResponse(Dish dish);
 
     List<DishResponse> dishesToResponses(List<Dish> dishes);
+
+    @Mapping(target = "id", source = "productId")
+    Dish toEntity(Long productId);
 }
