@@ -1,11 +1,11 @@
 package com.example.pizza.controller;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.model.DrinkOrder;
 import com.example.pizza.request.drink.DrinkCreateRequest;
 import com.example.pizza.request.drink.DrinkUpdateRequest;
 import com.example.pizza.request.product.ProductOrderCreateRequest;
 import com.example.pizza.request.product.ProductOrderUpdateRequest;
+import com.example.pizza.response.DrinkOrderResponse;
 import com.example.pizza.response.DrinkResponse;
 import com.example.pizza.service.DrinkService;
 import lombok.RequiredArgsConstructor;
@@ -64,23 +64,23 @@ public class DrinkController {
     }
 
     @PostMapping("/product-order")
-    public ResponseEntity<DrinkOrder> addDrinkToTheOrder(
+    public ResponseEntity<DrinkOrderResponse> addDrinkToTheOrder(
             @RequestBody ProductOrderCreateRequest productOrderCreateRequest) {
-        DrinkOrder drinkOrder = drinkService.addDrink(productOrderCreateRequest);
-        return new ResponseEntity<>(drinkOrder, HttpStatus.CREATED);
+        DrinkOrderResponse drinkOrderResponse = drinkService.addDrink(productOrderCreateRequest);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.CREATED);
     }
 
     @PutMapping("/product-order/{id}")
-    public ResponseEntity<DrinkOrder> changeDrinkInTheOrder(
+    public ResponseEntity<DrinkOrderResponse> changeDrinkInTheOrder(
             @RequestBody ProductOrderUpdateRequest productOrderUpdateRequest,
             @PathVariable Long id) {
-        DrinkOrder drinkOrder = drinkService.changeDrink(id, productOrderUpdateRequest);
-        return new ResponseEntity<>(drinkOrder, HttpStatus.OK);
+        DrinkOrderResponse drinkOrderResponse = drinkService.changeDrink(id, productOrderUpdateRequest);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/product-order/{id}")
-    public ResponseEntity<DrinkOrder> removeDrinkFromTheOrder(@PathVariable Long id) {
-        DrinkOrder drinkOrder = drinkService.deleteDrink(id);
-        return new ResponseEntity<>(drinkOrder, HttpStatus.OK);
+    public ResponseEntity<DrinkOrderResponse> removeDrinkFromTheOrder(@PathVariable Long id) {
+        DrinkOrderResponse drinkOrderResponse = drinkService.deleteDrink(id);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.OK);
     }
 }
