@@ -37,6 +37,14 @@ public class InformationController {
         return new ResponseEntity<>(informationResponses, HttpStatus.OK);
     }
 
+    @GetMapping("category/{name}")
+    public ResponseEntity<List<InformationResponse>> getInformationByCategory(
+            @PathVariable("name") String categoryName) {
+        List<InformationResponse> informationResponseList =
+                informationService.getInformationByCategoryName(categoryName);
+        return new ResponseEntity<>(informationResponseList, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<InformationResponse> create(@RequestBody InformationCreateRequest informationCreateRequest) {
         InformationResponse informationResponses = informationService.create(informationCreateRequest);
