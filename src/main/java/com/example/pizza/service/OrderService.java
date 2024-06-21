@@ -49,4 +49,11 @@ public interface OrderService {
      */
     List<OrderResponse> getAllOrders();
 
+    /**
+     * Finds user orders by their username and returns them as a list of Order Response objects.
+     *
+     * @param login the username of the user whose orders need to be found
+     * @return A list of OrderResponse objects representing user orders
+     */
+    List<OrderResponse> findOrderByUserLogin(String login);
 }
