@@ -36,4 +36,7 @@ public interface OrderMapper {
     OrderResponse orderToResponse(Order order);
 
     List<OrderResponse> ordersToResponses(List<Order> orders);
+
+    @Mapping(target = "id", source = "orderId")
+    Order toEntity(Long orderId);
 }

@@ -78,4 +78,11 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = orderRepository.findAll();
         return orderMapper.ordersToResponses(orders);
     }
+
+    @Override
+    public List<OrderResponse> findOrderByUserLogin(String login) {
+
+        List<Order> orderList = orderRepository.findOrderByUserLoginOrderByCreatedDesc(login);
+        return orderMapper.ordersToResponses(orderList);
+    }
 }

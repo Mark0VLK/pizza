@@ -3,6 +3,9 @@ package com.example.pizza.service;
 import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.pizza.PizzaCreateRequest;
 import com.example.pizza.request.pizza.PizzaUpdateRequest;
+import com.example.pizza.request.product.ProductOrderCreateRequest;
+import com.example.pizza.request.product.ProductOrderUpdateRequest;
+import com.example.pizza.response.PizzaOrderResponse;
 import com.example.pizza.response.PizzaResponse;
 
 import java.util.List;
@@ -50,5 +53,30 @@ public interface PizzaService {
      * @return a list of all PizzaResponse objects
      */
     List<PizzaResponse> getAllPizzas();
+
+    /**
+     * Adds a new pizza order based on the provided request.
+     *
+     * @param productOrderCreateRequest the request containing data for creating a new pizza order
+     * @return the newly created pizza order
+     */
+    PizzaOrderResponse addPizza(ProductOrderCreateRequest productOrderCreateRequest);
+
+    /**
+     * Changes an existing pizza order based on the provided update request.
+     *
+     * @param id                        the ID of the pizza order to change
+     * @param productOrderUpdateRequest the request containing data for updating an existing pizza order
+     * @return the updated pizza order
+     */
+    PizzaOrderResponse changePizza(Long id, ProductOrderUpdateRequest productOrderUpdateRequest);
+
+    /**
+     * Deletes a pizza order with the specified ID.
+     *
+     * @param id the ID of the pizza order to delete
+     * @return the deleted pizza order
+     */
+    PizzaOrderResponse deletePizza(Long id);
 
 }

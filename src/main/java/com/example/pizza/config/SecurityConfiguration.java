@@ -92,7 +92,6 @@ public class SecurityConfiguration {
                         // UserController
                         .requestMatchers("/api/v1/user/**").hasRole(ADMIN.name())
 
-
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
