@@ -12,5 +12,27 @@ spring:
     hibernate:
       ddl-auto: validate
 
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
   liquibase:
     change-log: db/changelog/main-changelog.xml
+
+logging:
+  level:
+    root: INFO
+  file:
+    name: loggers.log
+
+application:
+  security:
+    jwt:
+      secret-key: ${jwt.secret-key}
+      expiration: ${jwt.expiration}
+      refresh-token:
+        expiration: ${refresh-token.expiration}

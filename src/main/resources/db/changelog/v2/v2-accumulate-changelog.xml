@@ -3,10 +3,10 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include file="v1/v1-accumulate-changelog.xml"
+    <include file="v2-change-users-table-changelog.xml"
              relativeToChangelogFile="true"/>
 
-    <include file="v2/v2-accumulate-changelog.xml"
+    <include file="v2-create-token-table-changelog.xml"
              relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -1,7 +1,6 @@
 package com.example.pizza.controller;
 
 import com.example.pizza.enums.DeleteMode;
-import com.example.pizza.request.user.UserCreateRequest;
 import com.example.pizza.request.user.UserUpdateRequest;
 import com.example.pizza.response.UserResponse;
 import com.example.pizza.service.UserService;
@@ -39,12 +38,6 @@ public class UserController {
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserCreateRequest userCreateRequest) {
-        UserResponse userResponse = userService.create(userCreateRequest);
-        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable Long id,
                                                @RequestBody UserUpdateRequest userUpdateRequest) {
@@ -57,6 +50,12 @@ public class UserController {
                                                @RequestParam(value = "deleteMode", defaultValue = "SOFT")
                                                DeleteMode deleteMode) {
         UserResponse userResponse = userService.deleteById(id, deleteMode);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/{userId}/{locationId}")
+    public ResponseEntity<UserResponse> addLocation(@PathVariable Long userId, @PathVariable Long locationId) {
+        UserResponse userResponse = userService.addUserLocation(userId, locationId);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 }

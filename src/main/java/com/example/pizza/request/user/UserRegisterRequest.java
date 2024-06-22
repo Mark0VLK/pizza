@@ -1,5 +1,6 @@
 package com.example.pizza.request.user;
 
+import com.example.pizza.enums.secure.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -10,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import java.sql.Timestamp;
 
 @Validated
-public record UserCreateRequest(
+public record UserRegisterRequest(
 
         @NotBlank(message = "{user.name.mandatory}")
         @Size(max = 20, message = "{user.name.size}")
@@ -35,6 +36,13 @@ public record UserCreateRequest(
         String password,
 
         @Past(message = "{user.birthDate.past}")
-        Timestamp birthDate
+        Timestamp birthDate,
+
+        @NotBlank(message = "{user.login.mandatory}")
+        @Size(max = 20, message = "{user.login.size}")
+        String login,
+
+        @NotBlank(message = "{user.role.mandatory}")
+        Role role
 ) {
 }

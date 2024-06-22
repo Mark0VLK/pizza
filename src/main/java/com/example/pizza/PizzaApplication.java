@@ -2,16 +2,12 @@ package com.example.pizza;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing
 @SpringBootApplication
 public class PizzaApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(PizzaApplication.class, args);
-	}
-
-
+        SpringApplication.run(PizzaApplication.class, args);
+    }
 }

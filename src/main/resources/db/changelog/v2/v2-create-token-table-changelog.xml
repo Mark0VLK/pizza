@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v2-2" author="Mark Valkanouski">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="token"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="token">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="token" type="varchar(255)"/>
+            <column name="token_type" type="varchar(255)"/>
+            <column name="expired" type="boolean"/>
+            <column name="revoked" type="boolean"/>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="token" baseColumnNames="user_id"
+                                 constraintName="fk_token_user_id" referencedTableName="users"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
