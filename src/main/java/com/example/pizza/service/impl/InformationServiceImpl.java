@@ -72,4 +72,10 @@ public class InformationServiceImpl implements InformationService {
         List<Information> informationList = informationRepository.findAll();
         return informationMapper.informationListToResponses(informationList);
     }
+
+    @Override
+    public List<InformationResponse> getInformationByCategoryName(String name) {
+        List<Information> informationList = informationRepository.getInformationByCategoryName(name);
+        return informationMapper.informationListToResponses(informationList);
+    }
 }

@@ -19,4 +19,7 @@ public interface DrinkMapper {
     DrinkResponse drinkToResponse(Drink drink);
 
     List<DrinkResponse> drinksToResponses(List<Drink> drinks);
+
+    @Mapping(target = "id", source = "productId")
+    Drink toEntity(Long productId);
 }

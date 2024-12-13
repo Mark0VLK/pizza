@@ -49,4 +49,11 @@ public interface InformationService {
      */
     List<InformationResponse> getAllInformation();
 
+    /**
+     * This method searches for information about products belonging to the specified category
+     *
+     * @param name the name of the category to search for information items
+     * @return a list of {@link InformationResponse} objects that belong to the specified category
+     */
+    List<InformationResponse> getInformationByCategoryName(String name);
 }

@@ -37,6 +37,12 @@ public class OrderController {
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);
     }
 
+    @GetMapping("user/{login}")
+    public ResponseEntity<List<OrderResponse>> getOrderById(@PathVariable String login) {
+        List<OrderResponse> orderResponses = orderService.findOrderByUserLogin(login);
+        return new ResponseEntity<>(orderResponses, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<OrderResponse> create(@RequestBody OrderCreateRequest orderCreateRequest) {
         OrderResponse orderResponse = orderService.create(orderCreateRequest);

@@ -3,6 +3,9 @@ package com.example.pizza.controller;
 import com.example.pizza.enums.DeleteMode;
 import com.example.pizza.request.drink.DrinkCreateRequest;
 import com.example.pizza.request.drink.DrinkUpdateRequest;
+import com.example.pizza.request.product.ProductOrderCreateRequest;
+import com.example.pizza.request.product.ProductOrderUpdateRequest;
+import com.example.pizza.response.DrinkOrderResponse;
 import com.example.pizza.response.DrinkResponse;
 import com.example.pizza.service.DrinkService;
 import lombok.RequiredArgsConstructor;
@@ -58,5 +61,26 @@ public class DrinkController {
                                                 DeleteMode deleteMode) {
         DrinkResponse drinkResponse = drinkService.deleteById(id, deleteMode);
         return new ResponseEntity<>(drinkResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/product-order")
+    public ResponseEntity<DrinkOrderResponse> addDrinkToTheOrder(
+            @RequestBody ProductOrderCreateRequest productOrderCreateRequest) {
+        DrinkOrderResponse drinkOrderResponse = drinkService.addDrink(productOrderCreateRequest);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/product-order/{id}")
+    public ResponseEntity<DrinkOrderResponse> changeDrinkInTheOrder(
+            @RequestBody ProductOrderUpdateRequest productOrderUpdateRequest,
+            @PathVariable Long id) {
+        DrinkOrderResponse drinkOrderResponse = drinkService.changeDrink(id, productOrderUpdateRequest);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/product-order/{id}")
+    public ResponseEntity<DrinkOrderResponse> removeDrinkFromTheOrder(@PathVariable Long id) {
+        DrinkOrderResponse drinkOrderResponse = drinkService.deleteDrink(id);
+        return new ResponseEntity<>(drinkOrderResponse, HttpStatus.OK);
     }
 }
